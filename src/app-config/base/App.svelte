@@ -1,5 +1,6 @@
 <script lang="ts">
-  import Login from '../../components/Login.svelte'
+  import '../start';
+  import Login from '../../components/Login.svelte';
   import Header from "../../components/Header.svelte";
   import Body from "../../components/Body.svelte";
   import Footer from "../../components/Footer.svelte";
