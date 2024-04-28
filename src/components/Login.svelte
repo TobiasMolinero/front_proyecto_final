@@ -1,5 +1,18 @@
 <script lang="ts">
     import logo from '../assets/logo.png'
+    import { InputLibre, ButtonForm } from "@lib";
+    import { createForm } from '@controlers';
+    import { loginSchema } from './schemas';
+    import { loginValidator } from './validators';
+
+    const {form, errors, handleSubmit} = createForm({
+        initialValues: loginSchema,
+        validationSchema: loginValidator,
+        onSubmit: data => {
+            console.log(data);
+        }
+    })
+
 </script>
 
 <div class="page-login">
@@ -16,19 +29,12 @@
         <div class="container-login">
             <div class="login">
                 <h2>Iniciar Sesion</h2>
-                <form class="form-login">
+                <form on:submit|preventDefault={handleSubmit} class="form-login">
                     <div class="inputs">
-                        <div class="input">
-                            <label for="inputUser">Usuario*</label>
-                            <input id="inputUser" type="text">
-                        </div>
-                        <div class="input">
-                            <label for="inputPassword">Contraseña*</label>
-                            <input id="inputPassword" type="text">
-                        </div>
-                    </div>
+                        <InputLibre label="Usuario*" type="text" id="inputUsuario" bind:value={$form.usuario} error={$errors.usuario ? true : false}/>
+                        <InputLibre label="Contraseña*" type="password" id="inputContraseña" bind:value={$form.contraseña} error={$errors.contraseña ? true : false}/>
                     <div class="form-button">
-                        <button type="button" class="button">Ingresar</button>
+                        <ButtonForm type="submit" text="Ingresar"/>
                     </div>
                 </form>
             </div>
@@ -127,40 +133,11 @@
         gap: 20px;
     }
 
-    .input{
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-    }
-    .input > input{
-        height: 35px;
-        border-radius: 10px;
-        border: 1px solid #00000050;
-        padding-left: 10px;
-    }
-    .input > input:focus-visible{
-        outline: 1px solid var(--dark-blue);
-    }
-
     .form-button{
         display: flex;
         justify-content: center;
+        margin-top: 20px;
     }
-    .button{
-        font-weight: 500;
-        width: 100%;
-        height: 45px;
-        border-radius: 10px;
-        border: none;
-        background: var(--dark-blue);
-        color: #fff;
-        cursor: pointer;
-    }
-    .button:hover{
-        background: var(--regular-blue);
-    }
-    .button:active{
-        background: var(--dark-blue);
-    }
+
 
 </style>
