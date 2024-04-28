@@ -13,6 +13,11 @@
      */
     "allowJs": true,
     "checkJs": true,
+    "paths": {
+      "@lib": ["./src/lib/modul.ts"],
+      "@controlers": ["./src/shared/imports/controlers.ts"],
+      "@validate": ["./src/shared/imports/validate.ts"]
+    },
     "isolatedModules": true
   },
   "include": ["src/**/*.ts", "src/**/*.js", "src/**/*.svelte"],
