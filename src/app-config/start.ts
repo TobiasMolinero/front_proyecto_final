@@ -1,3 +1,4 @@
-import { configHTTP } from "./config/request";
+import { configHTTP, configInterceptor } from "./config/request";
 
 configHTTP();
+configInterceptor();

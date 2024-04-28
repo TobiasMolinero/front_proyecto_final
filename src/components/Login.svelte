@@ -10,9 +10,7 @@
         validationSchema: loginValidator,
         onSubmit: data => {
             console.log(data);
-            http.post("/usuarios/login", data).then(result => {
-                console.log(result.data);
-            })
+            http.post("/usuarios/login", data)
         }
     })
 
@@ -44,7 +42,6 @@
         </div>
     </div>
 </div> 
-<!-- <h1>LOGIN</h1> -->
 
 <style>
     .page-login{
