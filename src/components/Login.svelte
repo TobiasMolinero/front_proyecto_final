@@ -1,7 +1,7 @@
 <script lang="ts">
     import logo from '../assets/logo.png'
     import { InputLibre, ButtonForm } from "@lib";
-    import { createForm } from '@controlers';
+    import { createForm, http } from '@controlers';
     import { loginSchema } from './schemas';
     import { loginValidator } from './validators';
 
@@ -10,6 +10,9 @@
         validationSchema: loginValidator,
         onSubmit: data => {
             console.log(data);
+            http.post("/usuarios/login", data).then(result => {
+                console.log(result.data);
+            })
         }
     })
 
