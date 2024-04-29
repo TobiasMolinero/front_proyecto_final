@@ -1,6 +1,6 @@
 <script lang="ts">
-    import eye from '../../assets/eye.svg';
-    import eye_hidden from '../../assets/eye-hidden.svg';
+    import eye from '../../assets/iconos/eye.svg';
+    import eye_hidden from '../../assets/iconos/eye-hidden.svg';
     
     export let label: string;
     export let value: string;

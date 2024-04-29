@@ -9,7 +9,6 @@
         initialValues: loginSchema,
         validationSchema: loginValidator,
         onSubmit: data => {
-            console.log(data);
             http.post("/usuarios/login", data)
         }
     })
@@ -138,6 +137,4 @@
         justify-content: center;
         margin-top: 20px;
     }
-
-
 </style>

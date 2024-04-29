@@ -1,19 +1,17 @@
 <script lang="ts">
   import '../start';
-  import Login from "../../components/Login.svelte";
-  import Header from "../../components/Header.svelte";
   import Body from "../../components/Body.svelte";
-  import Footer from "../../components/Footer.svelte";
+  import Login from "../../components/Login.svelte";
+  import LateralNav from '../../components/LateralNav.svelte';
 
-  let login: boolean = false;
+  let login: boolean = true;
 
 </script>
 
 <div class="main">
   {#if login}
-    <Header />
+    <LateralNav />
     <Body />
-    <Footer /> 
   {:else}
     <Login />
   {/if}
@@ -21,8 +19,9 @@
 
 <style>
   .main{
+    background: aliceblue;
     height: 100vh;
+    width: 100vw;
     display: flex;
-    flex-direction: column;
   }
 </style>

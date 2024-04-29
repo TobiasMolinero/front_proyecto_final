@@ -10,6 +10,6 @@ export let configHTTP = () => {
 }
 
 export let configInterceptor = () => {
-    axios.interceptors.response.use(response.fine_response);
+    axios.interceptors.response.use(response.fn_response);
 }
 

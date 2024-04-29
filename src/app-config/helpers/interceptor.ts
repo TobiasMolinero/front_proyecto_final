@@ -1,9 +1,9 @@
 import type { AxiosResponse } from 'axios';
 
-let fine_response = (response: AxiosResponse) => {
+let fn_response = (response: AxiosResponse) => {
 
     let res: any = {
-        datos: response.data.data,
+        data: response.data.data,
         status: response.status,
         statusText: response.statusText || '',
         tag: response.data?.tag || 'default-tag',
@@ -24,5 +24,5 @@ let fine_response = (response: AxiosResponse) => {
 }
 
 export let response = {
-    fine_response
+    fn_response
 }
