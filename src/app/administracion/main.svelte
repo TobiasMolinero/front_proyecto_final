@@ -8,3 +8,9 @@
 <main>
     <Router {prefix} {routes}/>
 </main>
+
+<style>
+    main{
+        flex: 1;
+    }
+</style>
