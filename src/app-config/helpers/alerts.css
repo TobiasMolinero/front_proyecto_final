@@ -1,0 +1,15 @@
+.alert-title{
+    font-size: 1.6rem !important;
+}
+
+.alert-text{
+    font-size: 1.4rem !important;
+}
+
+.alert-button{
+    font-size: 1.2rem !important;
+}
+
+.alert-button:focus{
+    box-shadow: none !important;
+}

@@ -7,7 +7,7 @@ let login = {
     id: 0
 }
 
-export let loginAccion = {
+export let loginAction = {
     login: (userName: string, rol: string, id: number) => {
         loginStore.update((value) => {
             value.isLogin = true;

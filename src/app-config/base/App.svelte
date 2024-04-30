@@ -1,15 +1,13 @@
 <script lang="ts">
   import '../start';
   import Body from "../../components/Body.svelte";
-  import Login from "../../components/Login.svelte";
   import LateralNav from '../../components/LateralNav.svelte';
-
-  let login: boolean = true;
-
+  import Login from '../../components/Login.svelte';
+  import { loginStore } from '@store';   
 </script>
 
 <div class="main">
-  {#if login}
+  {#if $loginStore.isLogin}
     <LateralNav />
     <Body />
   {:else}

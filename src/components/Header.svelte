@@ -1,28 +1,35 @@
 <script lang="ts">
+    import { onMount } from 'svelte';
     import { fade } from 'svelte/transition';
     import IconUser from '../assets/iconos/usuario.svg';
-    import user from '../assets/iconos/user-view.svg';
+    import userIcon from '../assets/iconos/user-view.svg';
     import logout from '../assets/iconos/logout.svg';
+    import { loginStore } from '@store';
 
     let dropMenu: boolean = false;
+    let user: string;
 
     function showHiddenDropdownMenu(){
         console.log(dropMenu)
         dropMenu ? dropMenu = false : dropMenu = true;
     }
+
+    onMount(() => {
+        user = $loginStore.userName;
+    })
 </script>
 
 <header class="header">
     <span>
         <button on:click={showHiddenDropdownMenu}>
-            Usuario
+            {user}
             <img src={IconUser} alt="icono usuario">
         </button>
         {#if dropMenu}
             <div transition:fade={{duration: 150}} class="dropdown-menu">
                 <ul class="menu">
                     <li class="menu-item">
-                        <img src={user} alt="icono mi perfil">
+                        <img src={userIcon} alt="icono mi perfil">
                         Mi perfil
                     </li>
                     <li class="menu-item logout">
@@ -71,7 +78,7 @@
     .dropdown-menu{
         position: absolute;
         top: 65px;
-        left: -70px;
+        left: -90px;
         width: 220px;
         padding: 15px 20px;
         background: var(--dark-blue);

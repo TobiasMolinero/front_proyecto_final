@@ -4,16 +4,22 @@
     import { createForm, http } from '@controlers';
     import { loginSchema } from './schemas';
     import { loginValidator } from './validators';
+    import { loginAction, loginStore } from '@store';
 
     const {form, errors, handleSubmit} = createForm({
         initialValues: loginSchema,
         validationSchema: loginValidator,
         onSubmit: data => {
-            http.post("/usuarios/login", data)
+            http.post("/usuarios/login", data).then(results => {
+                const user: string = results.data.usuario;
+                const rol: string = results.data.rol;
+                const id: number = results.data.id_usuario
+                loginAction.login(user, rol, id);
+            })
         }
     })
-
 </script>
+
 
 <div class="page-login">
     <div class="background">
