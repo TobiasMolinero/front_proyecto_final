@@ -1,18 +1,11 @@
 <script lang="ts">
-    import {onMount} from 'svelte';
-  import { http } from '../../../../shared/request';
+    import { Loader, ButtonTable } from '@lib';
+    import { getUsers } from '../helpers/helpers';
+    import iconEdit from '../../../../assets/iconos/editar.svg';
+    import iconDelete from '../../../../assets/iconos/borrar.svg';
 
-    let users: any;
+    let users: any = getUsers();
 
-    const getUsers = () => {
-        http.get('/usuarios/listarusuarios').then((results) => {
-            users = results.data;
-        })
-    }
-
-    onMount(() => {
-        getUsers();
-    })
 </script>
 
 <div class="section-table">
@@ -30,19 +23,40 @@
                 </tr>
             </thead>
             <tbody>
-                {#if users}
-                    {#each users as user, index}
-                        <tr>
-                            <td>{user.nombre}</td>
-                            <td>{user.apellido}</td>
-                            <td>{user.correo}</td>
-                            <td>{user.telefono}</td>
-                            <td>{user.usuario}</td>
-                            <td>{user.rol}</td>
-                            <td><button>borrar</button></td>
-                        </tr>
-                    {/each}
-                {/if}
+                {#await users}
+                    <tr>
+                        <td colspan="7">
+                            <Loader />
+                        </td>
+                    </tr>
+                {:then users} 
+                        {#each users as user, index}
+                            <tr>
+                                <td>{user.nombre}</td>
+                                <td>{user.apellido}</td>
+                                <td>{user.correo}</td>
+                                <td>{user.telefono}</td>
+                                <td>{user.usuario}</td>
+                                <td>{user.rol}</td>
+                                <td class="actions">
+                                    <ButtonTable className="edit" src={iconEdit} title="Editar usuario"/>
+                                    <ButtonTable className="delete" src={iconDelete} title="Eliminar usuario"/>
+                                </td>
+                            </tr>
+                        {:else}
+                            <tr>
+                                <td colspan="7">
+                                    <h2>No se encontraón resultados</h2>
+                                </td>
+                            </tr>
+                        {/each}
+                {:catch}
+                    <tr>
+                        <td colspan="7">
+                            <h2>No se encontraron resultados</h2>
+                        </td>
+                    </tr>              
+                {/await }
             </tbody>
         </table>
     </div>
@@ -86,7 +100,14 @@
         left: 0
     }
 
-    tbody tr{
-        height: 50px;
+    tbody tr td{
+        padding: 15px
+    }
+
+    .actions{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
     }
 </style>

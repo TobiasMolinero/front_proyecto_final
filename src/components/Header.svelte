@@ -3,15 +3,33 @@
     import { fade } from 'svelte/transition';
     import IconUser from '../assets/iconos/usuario.svg';
     import userIcon from '../assets/iconos/user-view.svg';
-    import logout from '../assets/iconos/logout.svg';
-    import { loginStore } from '@store';
+    import logoutIcon from '../assets/iconos/logout.svg';
+    import { loginAction, loginStore } from '@store';
+    import { question, success } from '../app-config/helpers/alerts';
 
     let dropMenu: boolean = false;
     let user: string;
 
-    function showHiddenDropdownMenu(){
+    const showHiddenDropdownMenu = () => {
         console.log(dropMenu)
         dropMenu ? dropMenu = false : dropMenu = true;
+    }
+
+    const logout = () => {
+
+        question.fire({
+            text: '¿Esta seguro que desea cerrar sesión?'
+        }).then(result => {
+            if (result.isConfirmed){
+                
+                success.fire({
+                    text: 'La sesión finalizo con exito.'
+                })
+
+                loginAction.logout();
+            } 
+        })
+
     }
 
     onMount(() => {
@@ -32,8 +50,10 @@
                         <img src={userIcon} alt="icono mi perfil">
                         Mi perfil
                     </li>
-                    <li class="menu-item logout">
-                        <img src={logout} alt="icono logout">
+                    <!-- svelte-ignore a11y-click-events-have-key-events -->
+                    <!-- svelte-ignore a11y-no-noninteractive-element-to-interactive-role -->
+                    <li class="menu-item logout" role="button" on:click={logout}>
+                        <img src={logoutIcon} alt="icono logout">
                         Cerrar sesión
                     </li>
                 </ul>
@@ -63,7 +83,7 @@
         display: flex;
         align-items: center;
         gap: 10px;
-        color: aliceblue;
+        color: white;
         border: none;
         background: transparent;
         cursor: pointer;

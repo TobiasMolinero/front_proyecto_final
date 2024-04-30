@@ -51,7 +51,7 @@
     .lateral-nav{
         display: flex;
         flex-direction: column;
-        width: 250px;
+        width: 220px;
         padding: 5px 10px;
         height: 100%;
         background: var(--dark-blue);

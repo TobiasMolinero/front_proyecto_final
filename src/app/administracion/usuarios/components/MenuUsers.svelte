@@ -1,5 +1,11 @@
 <script lang="ts">
-    import ButtonOpenModal from "../../../../lib/buttons/ButtonOpenModal.svelte";
+    import { ButtonOpenModal, FormUser} from "@lib";
+
+    let form: boolean = true;
+
+    const closeForm = () => {
+        form = false;
+    }
 </script>
 
 <div class="menu-users">
@@ -7,6 +13,10 @@
         <ButtonOpenModal text="Crear Usuario"/>
     </div>
 </div>
+
+{#if form}
+    <FormUser on:closeform={closeForm}/>
+{/if}
 
 <style>
     .menu-users{

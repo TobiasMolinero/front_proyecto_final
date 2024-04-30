@@ -4,7 +4,7 @@
     import { createForm, http } from '@controlers';
     import { loginSchema } from './schemas';
     import { loginValidator } from './validators';
-    import { loginAction, loginStore } from '@store';
+    import { loginAction } from '@store';
 
     const {form, errors, handleSubmit} = createForm({
         initialValues: loginSchema,
