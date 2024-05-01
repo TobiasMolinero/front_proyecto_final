@@ -5,6 +5,7 @@
     import { loginSchema } from './schemas';
     import { loginValidator } from './validators';
     import { loginAction } from '@store';
+    import { push } from 'svelte-spa-router';
 
     const {form, errors, handleSubmit} = createForm({
         initialValues: loginSchema,
@@ -15,6 +16,7 @@
                 const rol: string = results.data.rol;
                 const id: number = results.data.id_usuario
                 loginAction.login(user, rol, id);
+                push('/Administracion/Inicio')
             })
         }
     })

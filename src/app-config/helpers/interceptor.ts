@@ -1,6 +1,5 @@
 import type { AxiosRequestConfig, AxiosResponse } from 'axios';
-// import { errorRequest } from './errorRequest';
-import { success, alert_error, warning, question } from './alerts';
+import { success, alert_error} from '../../utils/alerts';
 
 let error_request = (error: any) => {
     return Promise.reject(error)

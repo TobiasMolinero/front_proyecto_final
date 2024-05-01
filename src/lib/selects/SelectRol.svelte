@@ -2,14 +2,14 @@
     export let id: string;
     export let label: string;
     export let error: boolean = false;
+    export let value: string = "selected";
 </script>
 
 <div class="select {error ? 'error' : '' }">
     <label for={id}>{label}</label>
-    <select id={id} value="selected">
-        <option value="selected">-- Seleccione un rol --</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
+    <select id={id} bind:value>
+        <option value="1">Admin</option>
+        <option value="2">Empleado</option>
     </select>
 </div>
 
@@ -27,6 +27,7 @@
         border-radius: 10px;
         border: 1px solid #00000050;
         padding: 0 10px;
+        cursor: pointer;
     }
 
     select:focus-visible{

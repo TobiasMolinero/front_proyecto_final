@@ -1,9 +1,18 @@
 <script lang="ts">
+  import { createEventDispatcher } from "svelte";
+
     export let text: string;
     export let disabled: boolean = false;
+
+    const dispatch = createEventDispatcher();
+
+    const openForm = () => {
+        dispatch('openform');
+    }
+
 </script>
 
-<button disabled={disabled}>{text}</button>
+<button disabled={disabled} on:click={openForm}>{text}</button>
 
 <style>
     button{

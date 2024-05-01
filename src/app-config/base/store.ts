@@ -1,7 +1,7 @@
 import { writable } from "svelte/store";
 
 let login = {
-    isLogin: false,
+    isLogin: true,
     userName: '',
     rol: '',
     id: 0

@@ -29,6 +29,12 @@
         color: var(--text-black);
         cursor: pointer;
     }
+    .button:hover{
+        background: rgb(224, 224, 224);
+    }
+    .button:active{
+        background: white;
+    }
 
     .button-submit{
         font-weight: 500;

@@ -1,21 +1,21 @@
 <script lang="ts">
     import { ButtonOpenModal, FormUser} from "@lib";
 
-    let form: boolean = true;
+    let form: boolean = false;
 
-    const closeForm = () => {
-        form = false;
+    const openCloseForm = () => {
+        form ? form = false : form = true;
     }
 </script>
 
 <div class="menu-users">
     <div class="container-button">
-        <ButtonOpenModal text="Crear Usuario"/>
+        <ButtonOpenModal text="Crear Usuario" on:openform={openCloseForm}/>
     </div>
 </div>
 
 {#if form}
-    <FormUser on:closeform={closeForm}/>
+    <FormUser on:closeform={openCloseForm}/>
 {/if}
 
 <style>

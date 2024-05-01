@@ -35,7 +35,13 @@
             </button>
         {/if}
     </div>
+{:else if type="email"}
+    <div class="input {error ? 'error' : ''}">
+        <label for={id}>{label}</label>
+        <input id={id} type="email" bind:value required>
+    </div>
 {/if}
+
 
 <style>
     .input{

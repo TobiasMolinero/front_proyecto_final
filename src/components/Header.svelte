@@ -1,14 +1,13 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
     import { fade } from 'svelte/transition';
     import IconUser from '../assets/iconos/usuario.svg';
     import userIcon from '../assets/iconos/user-view.svg';
     import logoutIcon from '../assets/iconos/logout.svg';
     import { loginAction, loginStore } from '@store';
-    import { question, success } from '../app-config/helpers/alerts';
+    import { question, success } from '../utils/alerts';
 
     let dropMenu: boolean = false;
-    let user: string;
+    let user: string = $loginStore.userName || 'usuario';
 
     const showHiddenDropdownMenu = () => {
         console.log(dropMenu)
@@ -16,7 +15,6 @@
     }
 
     const logout = () => {
-
         question.fire({
             text: '¿Esta seguro que desea cerrar sesión?'
         }).then(result => {
@@ -29,12 +27,7 @@
                 loginAction.logout();
             } 
         })
-
     }
-
-    onMount(() => {
-        user = $loginStore.userName;
-    })
 </script>
 
 <header class="header">

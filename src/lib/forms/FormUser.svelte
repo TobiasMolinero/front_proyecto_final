@@ -1,23 +1,43 @@
 <script lang="ts">
-    import { InputLibre, ButtonForm, SelectRol} from '@lib';
+    import { fade } from 'svelte/transition';
+    import { InputLibre, InputLetra, InputNumero, ButtonForm, SelectRol} from '@lib';
+    import { createForm, http } from '@controlers';
+    import { userSchema } from '../../app/administracion/usuarios/schemas/schemas';
+    import { userValidator } from '../../app/administracion/usuarios/validators/validators';
+
+    const { form, errors, handleSubmit } = createForm({
+        initialValues: userSchema,
+        validationSchema: userValidator,
+        onSubmit: data => {
+            console.log(data);
+        }
+    })
+
 </script>
 
-<div class="background-form">
+<div transition:fade={{duration: 150}} class="background-form">
     <div class="container-form">
         <h2>Crear usuario</h2>
-        <form class="form">
+        <form on:submit|preventDefault={handleSubmit} class="form">
             <div class="form-inputs">
-                <InputLibre id="inputNombre" label="Nombre *" type="text" value="" error={false} />
-                <InputLibre id="inputApellido" label="Apellido *" type="text" value="" error={false} />
-                <InputLibre id="inputCorreo" label="Correo *" type="text" value="" error={false} />
-                <InputLibre id="inputTelefono" label="Telefono*" type="text" value="" error={false} />
-                <InputLibre id="inputUsuario" label="Usuario *" type="text" value="" error={false} />
-                <SelectRol id="cboRol" label="Rol *"/>
-                <InputLibre id="inputContraseña" label="Contraseña*" type="text" value="" error={false}/>
+                <InputLetra id="inputNombre" label="Nombre *" bind:value={$form.nombre} error={$errors.nombre ? true : false} />
+                <InputLetra id="inputApellido" label="Apellido *" bind:value={$form.apellido} error={$errors.apellido ? true : false} />
+                <InputLibre id="inputCorreo" label="Correo *" type="email" bind:value={$form.correo} error={$errors.correo ? true : false} />
+                <InputNumero id="inputTelefono" label="Telefono*" min={10} max={10} bind:value={$form.telefono} error={$errors.telefono ? true : false} />
+                <InputLibre id="inputUsuario" label="Usuario *" type="text" bind:value={$form.usuario} error={$errors.usuario ? true : false} />
+                <SelectRol id="cboRol" label="Rol *" bind:value={$form.id_rol} error={$errors.id_rol ? true : false} />
+                <InputLibre id="inputContraseña" label="Contraseña*" type="text" bind:value={$form.contraseña} error={$errors.contraseña ? true : false}/>
             </div>
-            <div class="form-buttons">
-                <ButtonForm type="button" text="Cancelar" on:closeform />
-                <ButtonForm type="submit" text="Crear"/>
+            <div class="form-footer">
+                {#if $errors.nombre || $errors.apellido || $errors.correo || $errors.telefono || $errors.usuario || $errors.id_rol} 
+                    <p>Debe completar todos los campos.</p>
+                {:else if $errors.contraseña}
+                    <p>La contraseña debe tener 6 caract. minimos, una mayuscula, un número y un caracter especial.</p>
+                {/if}
+                <div class="form-buttons">
+                    <ButtonForm type="button" text="Cancelar" on:closeform />
+                    <ButtonForm type="submit" text="Crear" />
+                </div>
             </div>
         </form>
     </div>
@@ -69,6 +89,21 @@
         scrollbar-width: thin;
         scrollbar-color: var(--dark-blue) transparent;
         padding: 5px 10px;
+        border-top: 1px solid #8a8a8a;
+        border-bottom: 1px solid #8a8a8a;
+    }
+
+    .form-footer{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .form-footer p{
+        color: red;
+        font-size: 14px;
+        font-weight: 500;
+        text-align: center;
     }
 
     .form-buttons{
