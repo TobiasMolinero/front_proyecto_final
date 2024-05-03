@@ -1,11 +1,14 @@
 <script lang="ts">
-    import { ButtonOpenModal, FormUser} from "@lib";
+    import { ButtonOpenModal } from "@lib";
+    import FormUser from "./FormUser.svelte";
 
     let form: boolean = false;
 
     const openCloseForm = () => {
         form ? form = false : form = true;
     }
+
+    
 </script>
 
 <div class="menu-users">

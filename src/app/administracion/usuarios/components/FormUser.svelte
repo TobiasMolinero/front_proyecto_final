@@ -1,15 +1,23 @@
 <script lang="ts">
+    import { createEventDispatcher } from 'svelte';
     import { fade } from 'svelte/transition';
     import { InputLibre, InputLetra, InputNumero, ButtonForm, SelectRol} from '@lib';
     import { createForm, http } from '@controlers';
-    import { userSchema } from '../../app/administracion/usuarios/schemas/schemas';
-    import { userValidator } from '../../app/administracion/usuarios/validators/validators';
+    import { parsearDatosUsuario } from '../helpers/helpers';
+    import { userSchema } from '../schemas/schemas';
+    import { userValidator } from '../validators/validators';
+
+    const dispatch = createEventDispatcher();
 
     const { form, errors, handleSubmit } = createForm({
         initialValues: userSchema,
         validationSchema: userValidator,
         onSubmit: data => {
-            console.log(data);
+            const datosUsuario = parsearDatosUsuario(data);
+            
+            http.post('/usuarios/altausuario', datosUsuario).then(() => {
+                dispatch('closeform');
+            })
         }
     })
 

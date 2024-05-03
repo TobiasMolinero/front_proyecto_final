@@ -2,18 +2,23 @@ import type { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { success, alert_error} from '../../utils/alerts';
 
 let error_request = (error: any) => {
+    console.log(error)
     return Promise.reject(error)
 }
 
 let error_response = (error: any) => {
-    let res = error;
-    
-    if(res.response.data.message){
-        let message = res.response.data.message;
+
+    console.log(error)
+
+    let res: any ;
+
+    if(error.response.data.message){
         alert_error.fire({
-            text: message,
+            text: error.response.data.message
         })
+        res.message = error.response.data.message;
     }
+
 
     return Promise.reject(res);
 }
@@ -23,7 +28,7 @@ let fn_request = (request: AxiosRequestConfig) => {
 
     request.headers = {
         "Authorization": `Bearer ${token}`,
-        "Accept": "application/json, text/plain, */*"
+        "Content-Type": 'application/json'
     } 
 
     return request;
@@ -34,9 +39,7 @@ let fn_response = (response: AxiosResponse) => {
     let res: any = {
         data: response.data.data,
         status: response.status,
-        statusText: response.statusText || '',
-        tag: response.data?.tag || 'default-tag',
-        resolve: response.data?.status || 'default-status',
+        statusText: response.statusText || ''
     }
 
     let token = response.data.token;

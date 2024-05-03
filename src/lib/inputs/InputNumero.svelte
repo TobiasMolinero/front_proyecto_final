@@ -21,7 +21,7 @@
 
 <div class="input {error ? 'error' : ''}">
     <label for={id}>{label}</label>
-    <input id={id} type="text" minlength={min} maxlength={max} bind:value>
+    <input id={id} type="text" minlength={min} maxlength={max} bind:value autocomplete="off">
 </div>
 
 <style>

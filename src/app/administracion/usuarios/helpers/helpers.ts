@@ -1,8 +1,11 @@
-import { http } from '@controlers';
-
-export const getUsers = async() => {
-    const res = await http.get('/usuarios/listarusuarios');
-    const users = await res.data;
-    console.log(users)
-    return users;
+export const parsearDatosUsuario = (data: any) => {
+    return {
+        nombre: data.nombre,
+        apellido: data.apellido,
+        correo: data.correo,
+        telefono: data.telefono,
+        usuario: data.usuario,
+        contraseña: data.contraseña,
+        id_rol: +data.id_rol
+    }
 }

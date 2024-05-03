@@ -1,5 +1,6 @@
 <script lang="ts">
     import { fade } from 'svelte/transition';
+    import logo from '../assets/logo.png';
     import IconUser from '../assets/iconos/usuario.svg';
     import userIcon from '../assets/iconos/user-view.svg';
     import logoutIcon from '../assets/iconos/logout.svg';
@@ -10,7 +11,6 @@
     let user: string = $loginStore.userName || 'usuario';
 
     const showHiddenDropdownMenu = () => {
-        console.log(dropMenu)
         dropMenu ? dropMenu = false : dropMenu = true;
     }
 
@@ -31,6 +31,7 @@
 </script>
 
 <header class="header">
+    <img class="logo" src={logo} alt="">
     <span>
         <button on:click={showHiddenDropdownMenu}>
             {user}
@@ -63,13 +64,21 @@
         background: grey;
         box-shadow: 0 0 10px #00000080;
         display: flex;
-        justify-content: end;
+        justify-content: space-between;
+        align-items: center;
         width: 100%;
+    }
+
+    .logo{
+        width: 200px;
+        height: 70px;
     }
 
     span{
         position: relative;
         height: 100%;
+        display: flex;
+        align-items: center;
     }
 
     button{
@@ -90,7 +99,7 @@
 
     .dropdown-menu{
         position: absolute;
-        top: 65px;
+        top: 75px;
         left: -90px;
         width: 220px;
         padding: 15px 20px;

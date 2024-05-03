@@ -1,5 +1,4 @@
 <script>
-    import logo from '../assets/logo.png';
     import iconHome from '../assets/iconos/inicio.svg';
     import iconSales from '../assets/iconos/ventas.svg';
     import iconCharge from '../assets/iconos/cobros.svg'
@@ -11,37 +10,49 @@
 </script>
 
 <aside class="lateral-nav">
-    <img class="logo" src={logo} alt="logo">
-    <hr>
     <nav class="nav">
         <ul class="nav-list">
             <li class="nav-item ">
-                <img src={iconHome} alt="Gestión de usuarios">
-                <p>Inicio</p>
+                <a href="/#/Administracion/Inicio">
+                    <img src={iconHome} alt="Gestión de usuarios">
+                    <p>Inicio</p>
+                </a>
             </li>
             <li class="nav-item">
-                <img src={iconSales} alt="Gestión de usuarios">
-                <p>Ventas</p>
+                <a href="">
+                    <img src={iconSales} alt="Gestión de usuarios">
+                    <p>Ventas</p>
+                </a>
             </li>
             <li class="nav-item">
-                <img src={iconCharge} alt="Gestión de usuarios">
-                <p>Cobranzas</p>
+                <a href="">
+                    <img src={iconCharge} alt="Gestión de usuarios">
+                    <p>Cobranzas</p>
+                </a>
             </li>
             <li class="nav-item">
-                <img src={iconBills} alt="Gestión de usuarios">
-                <p>Gastos</p>
+                <a href="">
+                    <img src={iconBills} alt="Gestión de usuarios">
+                    <p>Gastos</p>
+                </a>
             </li>
             <li class="nav-item">
-                <img src={iconProduct} alt="Gestión de usuarios">
-                <p>Productos</p>
+                <a href="">
+                    <img src={iconProduct} alt="Gestión de usuarios">
+                    <p>Productos</p>
+                </a>
             </li>
             <li class="nav-item">
-                <img src={iconInventory} alt="Gestión de usuarios">
-                <p>Inventario</p>
+                <a href="">
+                    <img src={iconInventory} alt="Gestión de usuarios">
+                    <p>Inventario</p>
+                </a>
             </li>
             <li class="nav-item">
-                <img src={userManagement} alt="Gestión de usuarios">
-                <p>Gestionar usuarios</p>
+                <a href="/#/Administracion/Usuarios">
+                    <img src={userManagement} alt="Gestión de usuarios">
+                    <p>Gestionar usuarios</p>
+                </a>
             </li>
         </ul>
     </nav>
@@ -55,12 +66,6 @@
         padding: 5px 10px;
         height: 100%;
         background: var(--dark-blue);
-        box-shadow: 0 0 6px #000000;
-        z-index: 2;
-    }
-
-    .logo{
-        width: 100%;
     }
 
     .nav{
@@ -78,15 +83,20 @@
     }
 
     .nav-item{
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        cursor: pointer;
         border-radius: 5px;
-        padding: 4px 10px;
+        cursor: pointer;
     }
     .nav-item:hover{
         background: var(--light-blue);
+    }
+    
+    .nav-item a{
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        text-decoration: none;
+        border-radius: 5px;
+        padding: 4px 10px;
     }
 
     .nav-item p{

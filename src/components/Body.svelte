@@ -1,10 +1,10 @@
 <script lang="ts">
     import Routes from "../routes.svelte";
-    import Header from "./Header.svelte";
+    import LateralNav from "./LateralNav.svelte";
 </script>
 
 <div class="body">
-    <Header />
+    <LateralNav />
     <Routes />
 </div>
 
@@ -12,6 +12,5 @@
     .body{
         flex-grow: 1;
         display: flex;
-        flex-direction: column;
     }
 </style>

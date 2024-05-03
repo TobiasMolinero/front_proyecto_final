@@ -1,20 +1,13 @@
 import axios from 'axios';
-import type { AxiosRequestConfig, AxiosRequestHeaders, AxiosInstance } from 'axios'
+import type { AxiosRequestConfig, AxiosInstance } from 'axios'
 
-let httpInstans = (baseURL: string, timeout: number, headers: AxiosRequestHeaders): AxiosInstance => {
+let httpInstans = (baseURL: string): AxiosInstance => {
     let config: AxiosRequestConfig = {
-        baseURL,
-        timeout,
-        headers
+        baseURL
     }
     return axios.create(config);
 }
 
-let httpInstansConfig = (config: AxiosRequestConfig): AxiosInstance => {
-    return axios.create(config);
-}
-
 export let instance = {
-    httpInstans,
-    httpInstansConfig
+    httpInstans
 }

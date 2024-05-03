@@ -18,18 +18,18 @@
 {#if type === 'text'}
     <div class="input {error ? 'error' : ''}">
         <label for={id}>{label}</label>
-        <input id={id} type="text" bind:value>
+        <input id={id} type="text" bind:value autocomplete="off">
     </div>
 {:else if type === 'password'}
     <div class="input {error ? 'error' : ''}">
         <label for={id}>{label}</label>
         {#if passwordVisible}
-            <input id={id} type="text" bind:value>
+            <input id={id} type="text" bind:value autocomplete="off">
             <button on:click={showHiddenPassword}>
                 <img src={eye} alt="ver/ocultar contraseña" >
             </button>
         {:else}
-            <input id={id} type="password" bind:value>
+            <input id={id} type="password" bind:value autocomplete="off">
             <button on:click={showHiddenPassword}>
                 <img src={eye_hidden} alt="ver/ocultar contraseña" >
             </button>
@@ -38,7 +38,7 @@
 {:else if type="email"}
     <div class="input {error ? 'error' : ''}">
         <label for={id}>{label}</label>
-        <input id={id} type="email" bind:value required>
+        <input id={id} type="email" bind:value required autocomplete="off">
     </div>
 {/if}
 

@@ -9,7 +9,7 @@
 
 <div class="input {error ? 'error' : ''}">
     <label for={id}>{label}</label>
-    <input id={id} type="text" bind:value>
+    <input id={id} type="text" bind:value autocomplete="off">
 </div>
 
 <style>

@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { createEventDispatcher } from 'svelte';
     import { fade } from 'svelte/transition' 
 
     // export let id: number;
@@ -7,13 +8,22 @@
     export let title: string;
 
     let showTitle: boolean;
+    const dispatch = createEventDispatcher();
 
     const showHiddenTitle = () => {
         showTitle ? showTitle = false : showTitle = true;
     }
+
+    const openEditForm = () => {
+        dispatch('openform');
+    }
+    
+    const deleteUser = () => {
+        dispatch('deleteuser');
+    }
 </script>
 
-<button class={className} on:mouseenter={showHiddenTitle} on:mouseleave={showHiddenTitle}>
+<button class={className} on:mouseenter={showHiddenTitle} on:mouseleave={showHiddenTitle} on:click={openEditForm} on:click={deleteUser}>
     <img class="icon" src={src} alt="icono">
     {#if showTitle}
         <span transition:fade={{duration: 150}} class="title">{title}</span>
@@ -60,7 +70,7 @@
     .title{
         white-space: none;
         position: absolute;
-        bottom: -30px;
+        left: -120px;
         background: white;
         box-shadow: 0px 0px 6px #00000050;
         border-radius: 10px;
