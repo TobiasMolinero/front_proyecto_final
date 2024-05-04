@@ -5,6 +5,7 @@
     import iconBills from '../assets/iconos/gastos.svg';
     import iconProduct from '../assets/iconos/palta.svg'
     import iconInventory from '../assets/iconos/inventario.svg';
+    import iconConfig from '../assets/iconos/gear.svg';
     import userManagement from '../assets/iconos/user-manag.svg';
 
 </script>
@@ -19,33 +20,39 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="">
-                    <img src={iconSales} alt="Gestión de usuarios">
+                <a href="/#/Administracion/Ventas">
+                    <img src={iconSales} alt="Ventas">
                     <p>Ventas</p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="">
-                    <img src={iconCharge} alt="Gestión de usuarios">
+                <a href="/#/Administracion/Cobranzas">
+                    <img src={iconCharge} alt="Cobranzas">
                     <p>Cobranzas</p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="">
-                    <img src={iconBills} alt="Gestión de usuarios">
+                <a href="/#/Administracion/Gastos">
+                    <img src={iconBills} alt="Gastos">
                     <p>Gastos</p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="">
-                    <img src={iconProduct} alt="Gestión de usuarios">
+                <a href="/#/Administracion/Productos">
+                    <img src={iconProduct} alt="productos">
                     <p>Productos</p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="">
-                    <img src={iconInventory} alt="Gestión de usuarios">
+                <a href="/#/Administracion/Inventario">
+                    <img src={iconInventory} alt="inventario">
                     <p>Inventario</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/#/Administracion/Configuracion">
+                    <img src={iconConfig} alt="Configuracion">
+                    <p>Configuración</p>
                 </a>
             </li>
             <li class="nav-item">

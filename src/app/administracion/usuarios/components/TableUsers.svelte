@@ -1,21 +1,43 @@
 <script lang="ts">
     import { onMount } from 'svelte';
     import { Loader, ButtonTable } from '@lib';
+    import FormUser from './FormUser.svelte';
+    import FormPassword from './FormPassword.svelte';
     import iconEdit from '../../../../assets/iconos/editar.svg';
     import iconDelete from '../../../../assets/iconos/borrar.svg';
+    import iconEditPassword from '../../../../assets/iconos/key.svg';
     import { http } from '@controlers';
     import { question } from '@utils-alerts';
+    import { updateUsers } from '../store';
 
     let users: any;
-    let isLoading: any = true;
+    let isLoading: boolean = true;
+    let form: boolean = false;
+    let formPassword: boolean = false;
+    let id: number;
+
+    const openCloseForm = (e: any) => {
+        id = e.detail.user_id;
+        form ? form = false : form = true;
+    }
+
+    const openCloseFormPassword = (e: any) => {
+        id = e.detail.user_id;
+        formPassword ? formPassword = false : formPassword = true;
+    }
 
     const getUsers = () => {
+        isLoading = true;
         http.get('/usuarios/listarusuarios')
         .then(results => {
             users = results.data;
             isLoading = false;
         })
     }
+
+    updateUsers.subscribe(() => {
+        getUsers();
+    })
 
     const deleteUser = (id: number) => {
         console.log('hola')
@@ -24,15 +46,17 @@
         })
         .then(results => {
             if(results.isConfirmed){
-                http.delete(`/usuarios/bajausuario/${id}`);
-                getUsers();
+                http.delete(`/usuarios/bajausuario/${id}`)
+                .then(() => {
+                    getUsers();
+                })
             }
         })
     }
 
-    onMount(() => {
-        getUsers();
-    })
+    // onMount(() => {
+    //     getUsers();
+    // })
 </script>
 
 <div class="section-table">
@@ -66,8 +90,9 @@
                                 <td>{user.usuario}</td>
                                 <td>{user.rol}</td>
                                 <td class="actions">
-                                    <ButtonTable className="edit" src={iconEdit} title="Editar usuario" on:openform/>
-                                    <ButtonTable className="delete" src={iconDelete} title="Eliminar usuario" on:deleteuser={() => deleteUser(user.id_usuario)}/>
+                                    <ButtonTable className="edit" src={iconEdit} title="Editar usuario" id={user.id_usuario} on:openform={openCloseForm}/>
+                                    <ButtonTable className="delete" src={iconDelete} title="Eliminar usuario" id={user.id_usuario} on:deleteuser={() => deleteUser(user.id_usuario)}/>
+                                    <ButtonTable className="edit-password" src={iconEditPassword} title="Editar contraseña" id={user.id_usuario} on:openform={openCloseFormPassword}/>
                                 </td>
                             </tr>
                         {:else}
@@ -83,9 +108,13 @@
     </div>
 </div>
 
+{#if form}
+    <FormUser id={id} isEdit={true} on:closeform={openCloseForm}/>
+{/if}
 
-
-
+{#if formPassword}
+    <FormPassword id={id} on:closeform={openCloseFormPassword} />
+{/if}
 
 <style>
     .section-table{

@@ -7,3 +7,7 @@ export const userSchema = {
     id_rol: '',
     contraseña: ''
 }
+
+export const passwordSchema = {
+    contraseña: ''
+}

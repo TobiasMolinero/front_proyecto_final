@@ -7,7 +7,6 @@
     const openCloseForm = () => {
         form ? form = false : form = true;
     }
-
     
 </script>
 
@@ -18,7 +17,7 @@
 </div>
 
 {#if form}
-    <FormUser on:closeform={openCloseForm}/>
+    <FormUser isEdit={false} on:closeform={openCloseForm} />
 {/if}
 
 <style>

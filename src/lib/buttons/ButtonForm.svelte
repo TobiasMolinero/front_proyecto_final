@@ -7,7 +7,9 @@
     const dispatch = createEventDispatcher();
 
     const closeForm = () => {
-        dispatch('closeform');
+        dispatch('closeform', {
+            user_id: 0
+        });
     }
 </script>
 

@@ -1,8 +1,7 @@
 <script lang="ts">
     import { createEventDispatcher } from 'svelte';
-    import { fade } from 'svelte/transition' 
 
-    // export let id: number;
+    export let id: number;
     export let src: string;
     export let className: string;
     export let title: string;
@@ -15,7 +14,9 @@
     }
 
     const openEditForm = () => {
-        dispatch('openform');
+        dispatch('openform', {
+            user_id: id
+        });
     }
     
     const deleteUser = () => {
@@ -23,15 +24,15 @@
     }
 </script>
 
-<button class={className} on:mouseenter={showHiddenTitle} on:mouseleave={showHiddenTitle} on:click={openEditForm} on:click={deleteUser}>
+<button class={className} title={title} on:mouseenter={showHiddenTitle} on:mouseleave={showHiddenTitle} on:click={openEditForm} on:click={deleteUser}>
     <img class="icon" src={src} alt="icono">
-    {#if showTitle}
+    <!-- {#if showTitle}
         <span transition:fade={{duration: 150}} class="title">{title}</span>
-    {/if}
+    {/if} -->
 </button>
 
 <style>
-    .edit, .delete{
+    .edit, .delete, .edit-password{
         position: relative;
         cursor: pointer;
         width: 30px;
@@ -61,6 +62,16 @@
     }
     .delete:active{
         background: rgb(200, 0, 0);
+    }
+
+    .edit-password{
+        background: rgb(136, 136, 136);
+    }
+    .edit-password:hover{
+        background: rgb(155, 155, 155);
+    }
+    .edit-password:active{
+        background: rgb(136, 136, 136);
     }
 
     .icon{

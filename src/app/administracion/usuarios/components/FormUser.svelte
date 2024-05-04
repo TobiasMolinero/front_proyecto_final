@@ -1,55 +1,100 @@
 <script lang="ts">
-    import { createEventDispatcher } from 'svelte';
+    import { createEventDispatcher, onMount } from 'svelte';
     import { fade } from 'svelte/transition';
-    import { InputLibre, InputLetra, InputNumero, ButtonForm, SelectRol} from '@lib';
+    import { InputLibre, InputLetra, InputNumero, ButtonForm, SelectRol, Loader} from '@lib';
     import { createForm, http } from '@controlers';
     import { parsearDatosUsuario } from '../helpers/helpers';
     import { userSchema } from '../schemas/schemas';
-    import { userValidator } from '../validators/validators';
+    import { userValidator, userEditValidator } from '../validators/validators';
+    import { setUpdateUsers } from '../store';
+
+    export let id: number = 0;
+    export let isEdit: boolean;
+
+    let isLoading: boolean = true;
 
     const dispatch = createEventDispatcher();
 
     const { form, errors, handleSubmit } = createForm({
         initialValues: userSchema,
-        validationSchema: userValidator,
+        validationSchema: isEdit ? userEditValidator : userValidator,
         onSubmit: data => {
             const datosUsuario = parsearDatosUsuario(data);
+            console.log(datosUsuario)
+            if(isEdit){
+                http.put(`/usuarios/edit/${id}`, datosUsuario)
+                .then(() => {
+                    setUpdateUsers();
+                    dispatch('closeform', {user_id: 0});
+                })
+            } else {
+                http.post('/usuarios/altausuario', datosUsuario)
+                .then(() => {
+                    setUpdateUsers();
+                    dispatch('closeform');
+                })
+            }
             
-            http.post('/usuarios/altausuario', datosUsuario).then(() => {
-                dispatch('closeform');
+        }
+    })
+
+    onMount(() => {
+        if(id > 0){
+            http.get(`/usuarios/one/${id}`)
+            .then(results => {
+                $form.nombre = results.data[0].nombre;
+                $form.apellido = results.data[0].apellido;
+                $form.correo = results.data[0].correo;
+                $form.telefono = results.data[0].telefono;
+                $form.usuario = results.data[0].usuario;
+                const rol = results.data[0].rol;
+                if(rol === 'admin'){
+                    $form.id_rol = "1";
+                } else if(rol === 'empleado'){
+                    $form.id_rol = "2"
+                }
+                isLoading = false;
             })
+        } else {
+            isLoading = false;
         }
     })
 
 </script>
 
-<div transition:fade={{duration: 150}} class="background-form">
-    <div class="container-form">
-        <h2>Crear usuario</h2>
-        <form on:submit|preventDefault={handleSubmit} class="form">
-            <div class="form-inputs">
-                <InputLetra id="inputNombre" label="Nombre *" bind:value={$form.nombre} error={$errors.nombre ? true : false} />
-                <InputLetra id="inputApellido" label="Apellido *" bind:value={$form.apellido} error={$errors.apellido ? true : false} />
-                <InputLibre id="inputCorreo" label="Correo *" type="email" bind:value={$form.correo} error={$errors.correo ? true : false} />
-                <InputNumero id="inputTelefono" label="Telefono*" min={10} max={10} bind:value={$form.telefono} error={$errors.telefono ? true : false} />
-                <InputLibre id="inputUsuario" label="Usuario *" type="text" bind:value={$form.usuario} error={$errors.usuario ? true : false} />
-                <SelectRol id="cboRol" label="Rol *" bind:value={$form.id_rol} error={$errors.id_rol ? true : false} />
-                <InputLibre id="inputContraseña" label="Contraseña*" type="text" bind:value={$form.contraseña} error={$errors.contraseña ? true : false}/>
-            </div>
-            <div class="form-footer">
-                {#if $errors.nombre || $errors.apellido || $errors.correo || $errors.telefono || $errors.usuario || $errors.id_rol} 
-                    <p>Debe completar todos los campos.</p>
-                {:else if $errors.contraseña}
-                    <p>La contraseña debe tener 6 caract. minimos, una mayuscula, un número y un caracter especial.</p>
+    <div transition:fade={{duration: 150}} class="background-form">
+        <div class="container-form">
+            <h2>{isEdit ? 'Editar usuario' : 'Crear usuario'}</h2>
+            <form on:submit|preventDefault={handleSubmit} class="form">
+                {#if isLoading}
+                    <Loader />
+                {:else}                
+                    <div class="form-inputs">
+                        <InputLetra id="inputNombre" label="Nombre *" bind:value={$form.nombre} error={$errors.nombre ? true : false} />
+                        <InputLetra id="inputApellido" label="Apellido *" bind:value={$form.apellido} error={$errors.apellido ? true : false} />
+                        <InputLibre id="inputCorreo" label="Correo *" type="email" bind:value={$form.correo} error={$errors.correo ? true : false} />
+                        <InputNumero id="inputTelefono" label="Telefono*" min={10} max={10} bind:value={$form.telefono} error={$errors.telefono ? true : false} />
+                        <InputLibre id="inputUsuario" label="Usuario *" type="text" bind:value={$form.usuario} error={$errors.usuario ? true : false} />
+                        <SelectRol id="cboRol" label="Rol *" bind:value={$form.id_rol} error={$errors.id_rol ? true : false} />
+                        {#if !isEdit}
+                            <InputLibre id="inputContraseña" label="Contraseña*" type="text" bind:value={$form.contraseña} error={$errors.contraseña ? true : false} />
+                        {/if}
+                    </div>
                 {/if}
-                <div class="form-buttons">
-                    <ButtonForm type="button" text="Cancelar" on:closeform />
-                    <ButtonForm type="submit" text="Crear" />
+                <div class="form-footer">
+                    {#if $errors.nombre || $errors.apellido || $errors.correo || $errors.telefono || $errors.usuario || $errors.id_rol} 
+                        <p>Debe completar todos los campos.</p>
+                    {:else if $errors.contraseña}
+                        <p>La contraseña debe tener 6 caract. minimos, una mayuscula, un número y un caracter especial.</p>
+                    {/if}
+                    <div class="form-buttons">
+                        <ButtonForm type="button" text="Cancelar" on:closeform />
+                        <ButtonForm type="submit" text={isEdit ? 'Editar' : 'Crear'} />
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
 
 <style>
     .background-form{
