@@ -19,7 +19,7 @@
   .main{
     background: aliceblue;
     height: 100vh;
-    width: 100vw;
+    max-height: 100vh;
     display: flex;
     flex-direction: column;
   }

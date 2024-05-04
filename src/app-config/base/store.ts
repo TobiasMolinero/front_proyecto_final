@@ -3,7 +3,7 @@ import { writable } from "svelte/store";
 let login = {
     isLogin: true,
     userName: '',
-    rol: '',
+    rol: 'admin',
     id: 0
 }
 

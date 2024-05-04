@@ -41,14 +41,18 @@
             <div transition:fade={{duration: 150}} class="dropdown-menu">
                 <ul class="menu">
                     <li class="menu-item">
-                        <img src={userIcon} alt="icono mi perfil">
-                        Mi perfil
+                        <a class="item-link" href="/#/Administracion/MiPerfil" on:click={showHiddenDropdownMenu}>
+                            <img src={userIcon} alt="icono mi perfil">
+                            Mi perfil
+                        </a>
                     </li>
                     <!-- svelte-ignore a11y-click-events-have-key-events -->
                     <!-- svelte-ignore a11y-no-noninteractive-element-to-interactive-role -->
-                    <li class="menu-item logout" role="button" on:click={logout}>
-                        <img src={logoutIcon} alt="icono logout">
-                        Cerrar sesión
+                    <li class="menu-item logout" role="button" >
+                        <button class="item-link" on:click={logout}>
+                            <img src={logoutIcon} alt="icono logout">
+                            Cerrar sesión
+                        </button>
                     </li>
                 </ul>
             </div>
@@ -117,26 +121,36 @@
     }
 
     .menu-item{
+        border-radius: 5px;
+    }
+    .menu-item:hover{
+        background: var(--light-blue);
+    }
+
+    .item-link{
         display: flex;
         align-items: center;
         gap: 15px;
         cursor: pointer;
         border-radius: 5px;
         padding: 4px 10px;
-        color: aliceblue;
-    }
-    .menu-item:hover{
-        background: var(--light-blue);
+        text-decoration: none;
+        color: #fff;
     }
 
     .menu-item img{
         width: 25px;
     }
 
+    .menu-item button{
+        font-weight: 400;
+        width: 100%;
+    }
+
     .logout{
         color: white;
     }
-    .logout:hover{
+    .logout:hover button{ 
         background: #e0baba;
         color: red;
         font-weight: 600;

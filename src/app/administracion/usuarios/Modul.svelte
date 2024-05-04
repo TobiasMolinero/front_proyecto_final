@@ -9,12 +9,6 @@
     <TableUsers />
 </div>
 
-
-
-
-
-
-
 <style>
     .section{
         height: 100%;

@@ -7,7 +7,7 @@
     import iconInventory from '../assets/iconos/inventario.svg';
     import iconConfig from '../assets/iconos/gear.svg';
     import userManagement from '../assets/iconos/user-manag.svg';
-
+    import { loginStore } from '@store';
 </script>
 
 <aside class="lateral-nav">
@@ -49,18 +49,20 @@
                     <p>Inventario</p>
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="/#/Administracion/Configuracion">
-                    <img src={iconConfig} alt="Configuracion">
-                    <p>Configuración</p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="/#/Administracion/Usuarios">
-                    <img src={userManagement} alt="Gestión de usuarios">
-                    <p>Gestionar usuarios</p>
-                </a>
-            </li>
+            {#if $loginStore.rol === 'admin'}
+                <li class="nav-item">
+                    <a href="/#/Administracion/Configuracion">
+                        <img src={iconConfig} alt="Configuracion">
+                        <p>Configuración</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/#/Administracion/Usuarios">
+                        <img src={userManagement} alt="Gestión de usuarios">
+                        <p>Gestionar usuarios</p>
+                    </a>
+                </li>
+            {/if}
         </ul>
     </nav>
 </aside>

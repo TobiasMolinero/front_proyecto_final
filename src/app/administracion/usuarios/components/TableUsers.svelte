@@ -39,14 +39,13 @@
         getUsers();
     })
 
-    const deleteUser = (id: number) => {
-        console.log('hola')
+    const deleteUser = (id: number, id_persona: number) => {
         question.fire({
             text: 'Seguro que desea dar de baja este usuario? Esta acción es irreversible.'
         })
         .then(results => {
             if(results.isConfirmed){
-                http.delete(`/usuarios/bajausuario/${id}`)
+                http.put(`/usuarios/bajausuario/${id}`, {id_persona})
                 .then(() => {
                     getUsers();
                 })
@@ -54,9 +53,6 @@
         })
     }
 
-    // onMount(() => {
-    //     getUsers();
-    // })
 </script>
 
 <div class="section-table">
@@ -91,7 +87,7 @@
                                 <td>{user.rol}</td>
                                 <td class="actions">
                                     <ButtonTable className="edit" src={iconEdit} title="Editar usuario" id={user.id_usuario} on:openform={openCloseForm}/>
-                                    <ButtonTable className="delete" src={iconDelete} title="Eliminar usuario" id={user.id_usuario} on:deleteuser={() => deleteUser(user.id_usuario)}/>
+                                    <ButtonTable className="delete" src={iconDelete} title="Eliminar usuario" id={user.id_usuario} on:deleteuser={() => deleteUser(user.id_usuario, user.id_persona)}/>
                                     <ButtonTable className="edit-password" src={iconEditPassword} title="Editar contraseña" id={user.id_usuario} on:openform={openCloseFormPassword}/>
                                 </td>
                             </tr>
