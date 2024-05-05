@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
     import { Loader, ButtonTable } from '@lib';
     import FormUser from './FormUser.svelte';
     import FormPassword from './FormPassword.svelte';
