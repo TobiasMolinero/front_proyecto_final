@@ -10,7 +10,8 @@ export default defineConfig({
       '@controlers': '/src/shared/imports/controlers.ts',
       '@validate': '/src/shared/imports/validate.ts',
       '@store': '/src/app-config/base/store.ts',
-      '@utils-alerts': '/src/utils/alerts.ts'
+      '@utils-alerts': '/src/utils/alerts.ts',
+      '@routes': '/src/constants/api_routes.ts',
     }
   }
 })

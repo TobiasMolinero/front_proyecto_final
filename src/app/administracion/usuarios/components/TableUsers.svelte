@@ -8,6 +8,7 @@
     import { http } from '@controlers';
     import { question } from '@utils-alerts';
     import { updateUsers } from '../store';
+    import { admin_routes } from '@routes';
 
     let users: any;
     let isLoading: boolean = true;
@@ -27,7 +28,7 @@
 
     const getUsers = () => {
         isLoading = true;
-        http.get('/usuarios/listarusuarios')
+        http.get(admin_routes.users_list)
         .then(results => {
             users = results.data;
             isLoading = false;
@@ -44,7 +45,7 @@
         })
         .then(results => {
             if(results.isConfirmed){
-                http.put(`/usuarios/bajausuario/${id}`, {id_persona})
+                http.put(`${admin_routes.delete_user + id}`, {id_persona})
                 .then(() => {
                     getUsers();
                 })

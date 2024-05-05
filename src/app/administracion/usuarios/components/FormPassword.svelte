@@ -6,6 +6,7 @@
     import { passwordSchema } from '../schemas/schemas';
     import { passwordValidator } from '../validators/validators';
     import { setUpdateUsers } from '../store';
+    import { admin_routes } from '@routes'; 
 
     export let id: number = 0;
 
@@ -16,7 +17,7 @@
         validationSchema: passwordValidator,
         onSubmit: data => {
             const nueva_contraseña = data.contraseña;
-            http.put(`/usuarios/editpassword/${id}`, {nueva_contraseña})
+            http.put(`${admin_routes.edit_password + id}`, {nueva_contraseña})
             .then(() => {
                 setUpdateUsers();
                 dispatch('closeform', {user_id: 0});

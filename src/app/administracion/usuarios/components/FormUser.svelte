@@ -7,6 +7,7 @@
     import { userSchema } from '../schemas/schemas';
     import { userValidator, userEditValidator } from '../validators/validators';
     import { setUpdateUsers } from '../store';
+    import { admin_routes, gral_routes } from '@routes';
 
     export let id: number = 0;
     export let isEdit: boolean;
@@ -22,13 +23,13 @@
             const datosUsuario = parsearDatosUsuario(data);
             console.log(datosUsuario)
             if(isEdit){
-                http.put(`/usuarios/edit/${id}`, datosUsuario)
+                http.put(`${admin_routes.edit_user + id}`, datosUsuario)
                 .then(() => {
                     setUpdateUsers();
                     dispatch('closeform', {user_id: 0});
                 })
             } else {
-                http.post('/usuarios/altausuario', datosUsuario)
+                http.post(admin_routes.create_user, datosUsuario)
                 .then(() => {
                     setUpdateUsers();
                     dispatch('closeform');
@@ -40,7 +41,7 @@
 
     onMount(() => {
         if(id > 0){
-            http.get(`/usuarios/one/${id}`)
+            http.get(`${gral_routes.one_user + id}`)
             .then(results => {
                 $form.nombre = results.data[0].nombre;
                 $form.apellido = results.data[0].apellido;

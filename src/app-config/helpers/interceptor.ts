@@ -1,5 +1,9 @@
-import type { AxiosRequestConfig, AxiosResponse } from 'axios';
+import type { AxiosRequestConfig, AxiosRequestHeaders, AxiosResponse } from 'axios';
 import { success, alert_error} from '../../utils/alerts';
+
+interface AdaptAxiosRequestConfig extends AxiosRequestConfig {
+    headers: AxiosRequestHeaders
+  }
 
 let error_request = (error: any) => {
     console.log(error)
@@ -23,13 +27,14 @@ let error_response = (error: any) => {
     return Promise.reject(res);
 }
 
-let fn_request = (request: AxiosRequestConfig) => {
+let fn_request = (request: AdaptAxiosRequestConfig) => {
     let token = localStorage.getItem('token');
 
-    request.headers = {
-        "Authorization": `Bearer ${token}`,
-        "Content-Type": 'application/json'
-    } 
+    request.headers.set(
+        {
+            "Authorization": `Bearer ${token}`,
+        } 
+    )
 
     return request;
 }
