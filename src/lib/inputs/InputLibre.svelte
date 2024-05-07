@@ -25,12 +25,12 @@
         <label for={id}>{label}</label>
         {#if passwordVisible}
             <input id={id} type="text" bind:value autocomplete="off">
-            <button on:click={showHiddenPassword}>
+            <button type="button" on:click={showHiddenPassword}>
                 <img src={eye} alt="ver/ocultar contraseña" >
             </button>
         {:else}
             <input id={id} type="password" bind:value autocomplete="off">
-            <button on:click={showHiddenPassword}>
+            <button type="button" on:click={showHiddenPassword}>
                 <img src={eye_hidden} alt="ver/ocultar contraseña" >
             </button>
         {/if}

@@ -1,9 +1,10 @@
 <script>
     import iconHome from '../assets/iconos/inicio.svg';
     import iconSales from '../assets/iconos/ventas.svg';
-    import iconCharge from '../assets/iconos/cobros.svg'
+    import iconOrders from '../assets/iconos/pedidos.svg';
     import iconBills from '../assets/iconos/gastos.svg';
-    import iconProduct from '../assets/iconos/palta.svg'
+    import iconClientes from '../assets/iconos/clientes.svg';
+    import iconProduct from '../assets/iconos/palta.svg';
     import iconInventory from '../assets/iconos/inventario.svg';
     import iconConfig from '../assets/iconos/gear.svg';
     import userManagement from '../assets/iconos/user-manag.svg';
@@ -20,15 +21,21 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a href="/#/Administracion/Pedidos">
+                    <img src={iconOrders} alt="pedidos">
+                    <p>Pedidos</p>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a href="/#/Administracion/Ventas">
                     <img src={iconSales} alt="Ventas">
                     <p>Ventas</p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/#/Administracion/Cobranzas">
-                    <img src={iconCharge} alt="Cobranzas">
-                    <p>Cobranzas</p>
+                <a href="/#/Administracion/Clientes">
+                    <img src={iconClientes} alt="clientes">
+                    <p>Clientes</p>
                 </a>
             </li>
             <li class="nav-item">

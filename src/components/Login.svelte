@@ -6,20 +6,26 @@
     import { loginValidator } from './validators';
     import { loginAction } from '@store';
     import { push } from 'svelte-spa-router';
+    import { onMount } from 'svelte';
 
     const {form, errors, handleSubmit} = createForm({
         initialValues: loginSchema,
         validationSchema: loginValidator,
         onSubmit: data => {
-            http.post("/usuarios/login", data).then(results => {
+            http.post("/usuarios/login", data)
+            .then(results => {
                 const user: string = results.data.usuario;
                 const rol: string = results.data.rol;
                 const id: number = results.data.id_usuario
                 loginAction.login(user, rol, id);
-                push('/Administracion/Inicio')
+            })
+            .catch(() => {
+                loginAction.logout
             })
         }
     })
+
+    onMount(loginAction.logout)
 </script>
 
 
@@ -41,6 +47,7 @@
                     <div class="inputs">
                         <InputLibre label="Usuario*" type="text" id="inputUsuario" bind:value={$form.usuario} error={$errors.usuario ? true : false}/>
                         <InputLibre label="Contraseña*" type="password" id="inputContraseña" bind:value={$form.contraseña} error={$errors.contraseña ? true : false}/>
+                    </div>
                     <div class="form-button">
                         <ButtonForm type="submit" text="Ingresar"/>
                     </div>

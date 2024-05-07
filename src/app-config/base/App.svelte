@@ -17,7 +17,7 @@
 
 <style>
   .main{
-    background: aliceblue;
+    background: #fff;
     height: 100vh;
     max-height: 100vh;
     display: flex;

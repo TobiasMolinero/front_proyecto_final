@@ -1,28 +1,34 @@
 import type { AxiosRequestConfig, AxiosRequestHeaders, AxiosResponse } from 'axios';
 import { success, alert_error} from '../../utils/alerts';
+import { loginAction } from '@store';
+import { push } from 'svelte-spa-router';
 
 interface AdaptAxiosRequestConfig extends AxiosRequestConfig {
     headers: AxiosRequestHeaders
-  }
+}
 
 let error_request = (error: any) => {
-    console.log(error)
     return Promise.reject(error)
 }
 
 let error_response = (error: any) => {
 
-    console.log(error)
+    let res: any = {
+        data: error.response.data,
+        status: error.response.status,
+        statusText: error.response.statusText || ''
+    }
+    console.log(res)
 
-    let res: any ;
-
-    if(error.response.data.message){
+    if(res.data.message){
         alert_error.fire({
-            text: error.response.data.message
+            text: res.data.message
         })
-        res.message = error.response.data.message;
     }
 
+    if(res.data.logout){
+        loginAction.logout();
+    }
 
     return Promise.reject(res);
 }
