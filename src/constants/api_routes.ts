@@ -7,7 +7,6 @@ export const admin_routes = {
     edit_password: '/admin/usuarios/editpassword/',
 
     //Clientes
-    edit_customer: '/admin/clientes/edit/',
     delete_customer: '/admin/clientes/delete/'
 }
 
@@ -15,10 +14,11 @@ export const gral_routes = {
     //Usuarios
     one_user: '/usuarios/one/',
     login: '/usuarios/login',
-
-
+    
+    
     //Clientes
     one_customer: '/clientes/one/',
     all_customers: '/clientes/all',
-    create_customer: '/clientes/create'
+    create_customer: '/clientes/create',
+    edit_customer: '/clientes/edit/',
 }

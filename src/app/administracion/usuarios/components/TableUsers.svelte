@@ -9,6 +9,7 @@
     import { question } from '@utils-alerts';
     import { updateUsers } from '../store';
     import { admin_routes } from '@routes';
+    import type { EventButtonEdit } from '../interfaces';
 
     let users: any;
     let isLoading: boolean = true;
@@ -16,13 +17,13 @@
     let formPassword: boolean = false;
     let id: number;
 
-    const openCloseForm = (e: any) => {
-        id = e.detail.user_id;
+    const openCloseForm = (e: EventButtonEdit) => {
+        id = e.detail.id;
         form ? form = false : form = true;
     }
 
-    const openCloseFormPassword = (e: any) => {
-        id = e.detail.user_id;
+    const openCloseFormPassword = (e: EventButtonEdit) => {
+        id = e.detail.id;
         formPassword ? formPassword = false : formPassword = true;
     }
 
@@ -87,7 +88,7 @@
                                 <td>{user.rol}</td>
                                 <td class="actions">
                                     <ButtonTable className="edit" src={iconEdit} title="Editar usuario" id={user.id_usuario} on:openform={openCloseForm}/>
-                                    <ButtonTable className="delete" src={iconDelete} title="Eliminar usuario" id={user.id_usuario} on:deleteuser={() => deleteUser(user.id_usuario, user.id_persona)}/>
+                                    <ButtonTable className="delete" src={iconDelete} title="Eliminar usuario" id={user.id_usuario} on:delete={() => deleteUser(user.id_usuario, user.id_persona)}/>
                                     <ButtonTable className="edit-password" src={iconEditPassword} title="Editar contraseña" id={user.id_usuario} on:openform={openCloseFormPassword}/>
                                 </td>
                             </tr>

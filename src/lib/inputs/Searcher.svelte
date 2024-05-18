@@ -1,10 +1,22 @@
 <script lang="ts">
+  import { createEventDispatcher } from 'svelte';
     import lupa from '../../assets/iconos/lupa.svg';
+
     export let placeholder: string;
+
+    const dispatch = createEventDispatcher();
+    let valueFilter: string;
+
+    const sendValueFilter = () => {
+        dispatch('sendvalue', {
+            value: valueFilter
+        })
+    }
+
 </script>
 
 <div class="input">
-    <input type="text" placeholder={placeholder}>
+    <input type="text" placeholder={placeholder} bind:value={valueFilter} on:input={sendValueFilter}/>
     <img src={lupa} alt="Icono de lupa">
 </div>
 

@@ -26,7 +26,7 @@
                 http.put(`${admin_routes.edit_user + id}`, datosUsuario)
                 .then(() => {
                     setUpdateUsers();
-                    dispatch('closeform', {user_id: 0});
+                    dispatch('closeform', {id: 0});
                 })
             } else {
                 http.post(admin_routes.create_user, datosUsuario)

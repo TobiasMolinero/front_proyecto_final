@@ -1,10 +1,56 @@
 <script lang="ts">
+    import { onMount, createEventDispatcher } from 'svelte';
     import { fade } from 'svelte/transition';
     import { createForm, http } from '@controlers'
-    import { gral_routes, admin_routes } from '@routes';
+    import { gral_routes } from '@routes';
+    import { Loader, InputLetra, InputLibre, InputNumero, ButtonForm } from '@lib';
+    import { customerSchema } from '../schemas/schemas';
+    import { customerValidator } from '../validators/validators';
+    import { setUpdateCustomers } from '../store';
+    import { createCustomer, editCustomer } from '../helpers';
+    import type { DataCustomer } from '../interfaces';
 
-
+    export let id: number = 0;
     export let isEdit: boolean = false;
+
+    let isLoading: boolean = true;
+
+    const dispatch = createEventDispatcher();
+
+    const {form, errors, handleSubmit} = createForm({
+        initialValues: customerSchema,
+        validationSchema: customerValidator,
+        onSubmit: (data: DataCustomer) => {
+            if(isEdit){
+                editCustomer(id, data).then(() => {
+                    setUpdateCustomers();
+                    dispatch('closeform', {id: 0});
+                })
+            } else {
+                createCustomer(data).then(() => {
+                    setUpdateCustomers();
+                    dispatch('closeform');
+                })
+            }
+        }
+    })
+
+    onMount(() => {
+        if(id > 0){
+            http.get(`${gral_routes.one_customer + id}`).then(response => {
+                $form.nombre = response.data[0].nombre;
+                $form.apellido = response.data[0].apellido;
+                $form.razon_social = response.data[0].razon_social;
+                $form.domicilio = response.data[0].domicilio;
+                $form.correo = response.data[0].correo;
+                $form.telefono = response.data[0].telefono;
+                isLoading = false;
+            })
+        } else {
+            isLoading = false;
+        }
+    })
+
 </script>
 
 
@@ -13,25 +59,22 @@
         <h2>{isEdit ? 'Editar cliente' : 'Nuevo cliente'}</h2>
         <form on:submit|preventDefault={handleSubmit} class="form">
             {#if isLoading}
-                <Loader />
+                <div style="display: flex; justify-content: center;">
+                    <Loader />
+                </div>
             {:else}                
                 <div class="form-inputs">
-                    <InputLetra id="inputNombre" label="Nombre *" bind:value={$form.nombre} error={$errors.nombre ? true : false} />
-                    <InputLetra id="inputApellido" label="Apellido *" bind:value={$form.apellido} error={$errors.apellido ? true : false} />
-                    <InputLibre id="inputCorreo" label="Correo *" type="email" bind:value={$form.correo} error={$errors.correo ? true : false} />
+                    <InputLetra id="inputNombre" label="Nombre" bind:value={$form.nombre} error={$errors.nombre ? true : false} />
+                    <InputLetra id="inputApellido" label="Apellido" bind:value={$form.apellido} error={$errors.apellido ? true : false} />
+                    <InputLetra id="inputRazonSocial" label="Razón social(opcional)" bind:value={$form.razon_social} error={$errors.razon_social ? true : false} />
+                    <InputLibre id="inputDomicilio" label="Dirección" type="text" bind:value={$form.domicilio} error={$errors.domicilio ? true : false} />
+                    <InputLibre id="inputCorreo" label="Correo" type="text" bind:value={$form.correo} error={$errors.correo ? true : false} />
                     <InputNumero id="inputTelefono" label="Telefono*" min={10} max={10} bind:value={$form.telefono} error={$errors.telefono ? true : false} />
-                    <InputLibre id="inputUsuario" label="Usuario *" type="text" bind:value={$form.usuario} error={$errors.usuario ? true : false} />
-                    <SelectRol id="cboRol" label="Rol *" bind:value={$form.id_rol} error={$errors.id_rol ? true : false} />
-                    {#if !isEdit}
-                        <InputLibre id="inputContraseña" label="Contraseña*" type="text" bind:value={$form.contraseña} error={$errors.contraseña ? true : false} />
-                    {/if}
                 </div>
             {/if}
             <div class="form-footer">
-                {#if $errors.nombre || $errors.apellido || $errors.correo || $errors.telefono || $errors.usuario || $errors.id_rol} 
+                {#if $errors.nombre || $errors.apellido || $errors.correo || $errors.telefono || $errors.domicilio} 
                     <p>Debe completar todos los campos.</p>
-                {:else if $errors.contraseña}
-                    <p>La contraseña debe tener 6 caract. minimos, una mayuscula, un número y un caracter especial.</p>
                 {/if}
                 <div class="form-buttons">
                     <ButtonForm type="button" text="Cancelar" on:closeform />

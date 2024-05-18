@@ -5,6 +5,7 @@ const routes = {
     '/Inicio': wrap({ asyncComponent: () => import('./inicio/Modul.svelte') }),
     '/Clientes': wrap({ asyncComponent: () => import('./clientes/Modul.svelte') }),
     '/Usuarios': wrap({ asyncComponent: () => import('./usuarios/Modul.svelte') }),
+    '/Productos': wrap({ asyncComponent: () => import('./productos/Modul.svelte') }),
     '/MiPerfil': wrap({ asyncComponent: () => import('./mi-perfil/Modul.svelte')}),
 };
 

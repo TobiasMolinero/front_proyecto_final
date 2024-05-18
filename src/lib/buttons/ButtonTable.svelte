@@ -6,29 +6,22 @@
     export let className: string;
     export let title: string;
 
-    let showTitle: boolean;
     const dispatch = createEventDispatcher();
-
-    const showHiddenTitle = () => {
-        showTitle ? showTitle = false : showTitle = true;
-    }
 
     const openEditForm = () => {
         dispatch('openform', {
-            user_id: id
+            id: id
         });
     }
     
     const deleteUser = () => {
-        dispatch('deleteuser');
+        dispatch('delete');
     }
+    
 </script>
 
-<button class={className} title={title} on:mouseenter={showHiddenTitle} on:mouseleave={showHiddenTitle} on:click={openEditForm} on:click={deleteUser}>
+<button class={className} title={title} on:click={openEditForm} on:click={deleteUser}>
     <img class="icon" src={src} alt="icono">
-    <!-- {#if showTitle}
-        <span transition:fade={{duration: 150}} class="title">{title}</span>
-    {/if} -->
 </button>
 
 <style>

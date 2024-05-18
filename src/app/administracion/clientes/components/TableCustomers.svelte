@@ -3,20 +3,62 @@
     import { Loader, ButtonTable } from "@lib"; 
     import { http } from '@controlers';
     import { gral_routes } from "@routes";
+    import { question } from "@utils-alerts"; 
+    import { updateCustomers } from "../store";
+    import { deleteCustomer, filterCustomers } from "../helpers";
+    import type { EventButtonEdit } from "../../usuarios/interfaces";
+    import type { Customers } from "../interfaces";
+    import FormCustomer from "./FormCustomer.svelte";
     import iconEdit from '../../../../assets/iconos/editar.svg';
     import iconDelete from '../../../../assets/iconos/borrar.svg';
+    
+    export let valueFilter: string = '';
 
-    let customers: any;
+    let customers: Customers[];
+    let copyCustomers: Customers[];
     let isLoading: boolean = true;
     let form: boolean = false;
+    let id_customer: number;
+    
+    const openCloseForm = (e: EventButtonEdit) => {
+        id_customer = e.detail.id;
+        form ? form = false : form = true;
+    }
 
-    onMount(() => {
-        http.get(gral_routes.all_customers)
-        .then(results => {
-            customers = results.data;
+    const getCustomers = () => {
+        http.get(gral_routes.all_customers).then(response => {
+            customers = response.data;
             isLoading = false;
         })
+    }
+
+    const selectCustomer = (id: number) => {  
+        question.fire({
+            text: '¿Seguro que desea dar de baja este cliente? Esta acción es irreversible.'
+        })
+        .then((response) => {
+            if(response.isConfirmed){
+                deleteCustomer(id).then(() => {
+                    getCustomers();
+                })
+            }
+        })
+    }
+
+    onMount(() => {
+        getCustomers();
     })
+
+    updateCustomers.subscribe(() => {
+        getCustomers();
+    })
+
+    $: if(valueFilter.trim() === ''){
+        copyCustomers = customers;
+    } else {
+        copyCustomers = filterCustomers(customers, valueFilter);
+    }
+
 </script>
 
 <div class="section-table">
@@ -41,17 +83,17 @@
                         </td>
                     </tr>
                 {:else if customers} 
-                        {#each customers as customer}
+                        {#each copyCustomers as customer}
                             <tr>
                                 <td>{customer.nombre}</td>
                                 <td>{customer.apellido}</td>
-                                <td>{customer.razon_social}</td>
+                                <td>{customer.razon_social || '-'}</td>
                                 <td>{customer.domicilio}</td>
                                 <td>{customer.correo}</td>
                                 <td>{customer.telefono}</td>
                                 <td class="actions">
-                                    <ButtonTable className="edit" src={iconEdit} title="Editar usuario" id={customer.id_cliente} />
-                                    <ButtonTable className="delete" src={iconDelete} title="Eliminar usuario" id={customer.id_cliente} />
+                                    <ButtonTable className="edit" src={iconEdit} title="Editar usuario" id={customer.id_cliente} on:openform={openCloseForm}/>
+                                    <ButtonTable className="delete" src={iconDelete} title="Eliminar usuario" id={customer.id_cliente} on:delete={() => selectCustomer(customer.id_cliente)}/>
                                 </td>
                             </tr>
                         {:else}
@@ -66,6 +108,10 @@
         </table>
     </div>
 </div>
+
+{#if form}
+    <FormCustomer id={id_customer} isEdit={true} on:closeform={openCloseForm}/>
+{/if}
 
 <style>
     .section-table{

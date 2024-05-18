@@ -29,7 +29,7 @@
             <li class="nav-item">
                 <a href="/#/Administracion/Ventas">
                     <img src={iconSales} alt="Ventas">
-                    <p>Ventas</p>
+                    <p>Cobrar ventas</p>
                 </a>
             </li>
             <li class="nav-item">

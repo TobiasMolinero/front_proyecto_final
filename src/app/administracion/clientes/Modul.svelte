@@ -1,23 +1,19 @@
 <script lang="ts">
     import MenuCustomers from "./components/MenuCustomers.svelte";
     import TableCustomers from "./components/TableCustomers.svelte";
+    import type { EventSearcher } from "./interfaces";
+
+    let valueFilter: string;
+
+    const getValueFilter = (e: EventSearcher) => {
+        valueFilter = e.detail.value;
+    }
+
 </script>
 
-<div class="section">
-    <h2 class="title">Seguimiento de clientes</h2>
-    <MenuCustomers />
-    <TableCustomers />
+<div class="flex flex-col h-full">
+    <h2 class="font-[600] text-[25px] text-center p-[10px]">Seguimiento de clientes</h2>
+    <MenuCustomers on:sendvalue={getValueFilter}/>
+    <TableCustomers {valueFilter}/>
 </div>
 
-<style>
-    .section{
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .title{
-        padding: 10px;
-        text-align: center;
-    }
-</style>

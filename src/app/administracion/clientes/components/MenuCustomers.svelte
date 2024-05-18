@@ -3,19 +3,23 @@
     import FormCustomer from './FormCustomer.svelte';
 
     let form: boolean = false;
+
+    const openCloseForm = () => {
+        form ? form = false : form = true;
+    }
 </script>
 
 <div class="menu">
     <div class="container-search">
-        <Searcher placeholder="Ingrese un nombre"/>
+        <Searcher placeholder="Ingrese un nombre" on:sendvalue />
     </div>
     <div class="container-button">
-        <ButtonOpenModal text="Registrar nuevo cliente"/>
+        <ButtonOpenModal text="Registrar nuevo cliente" on:openform={openCloseForm} />
     </div>
 </div>
 
 {#if form}
-    <FormCustomer />
+    <FormCustomer on:closeform={openCloseForm}/>
 {/if}
 
 <style>

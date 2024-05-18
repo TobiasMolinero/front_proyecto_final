@@ -39,35 +39,35 @@
 </script>
 
 
-<div class="container">
-    <div class="header">
+<div class="grow m-[50px]">
+    <div class="flex gap-[20px] py-[20px]">
         <h1>Tobias Molinero</h1>
-        <span class="card-rol">Admin</span>
+        <span class="bg-[var(--dark-blue)] p-[10px_20px] font-[500] text-[18px] text-[#fff] rounded-[15px] shadow-[2px_2px_5px_#00000080]">Admin</span>
     </div>
-    <div class="body">
-        <ul class="data-list">
+    <div class="py-[20px] mx-[20px]">
+        <ul class="flex flex-col gap-[15px]">
             <li class="item">
-                <span>
+                <span class="text-[16px] font-[700]">
                     Correo: 
                 </span>
                 tobias@gmail.com
             </li>
-            <li class="item">
-                <span>
+            <li>
+                <span class="text-[16px] font-[700]">
                     Telefono: 
                 </span>
                 3815673581
             </li>
-            <li class="item">
-                <span>
+            <li>
+                <span class="text-[16px] font-[700]">
                     Nombre de usuario: 
                 </span>
                 TobiasM
             </li>
         </ul>
     </div>
-    <div class="footer">
-        <div class="footer-button">
+    <div class="mt-[20px] flex justify-start p-[10px_20px]">
+        <div class="w-[150px] h-[40px]">
             <ButtonOpenModal text="Modificar datos" on:openform={openShowForm}/>
         </div>
     </div>
@@ -76,55 +76,3 @@
 {#if form}
     <FormUser id={id} isEdit={true} on:closeform={openShowForm}/>
 {/if}
-
-<style>
-    .container{
-        height: 100%;
-        margin: 50px;
-    }
-
-    .header{
-        display: flex;
-        gap: 20px;
-        padding: 0 20px;
-    }
-
-    .card-rol{
-        background: var(--dark-blue);
-        padding: 10px 20px;
-        font-weight: 500;
-        font-size: 18px;
-        color: #fff;
-        border-radius: 15px;
-        box-shadow: 2px 2px 5px #00000080;
-    }
-
-    .body{
-        padding: 0 20px;
-        margin: 20px 0;
-    }
-
-    .data-list{
-        list-style: none;
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .item span{
-        font-size: 16px;
-        font-weight: 700;
-    }
-
-    .footer{
-        margin-top: 20px;
-        display: flex;
-        justify-content: start;
-        padding: 10px 20px;
-    }
-
-    .footer-button{
-        width: 140px;
-        height: 40px;
-    }
-</style>
