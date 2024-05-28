@@ -48,12 +48,7 @@
                 $form.correo = results.data[0].correo;
                 $form.telefono = results.data[0].telefono;
                 $form.usuario = results.data[0].usuario;
-                const rol = results.data[0].rol;
-                if(rol === 'admin'){
-                    $form.id_rol = "1";
-                } else if(rol === 'empleado'){
-                    $form.id_rol = "2"
-                }
+                $form.id_rol = results.data[0].id_rol_usuario;
                 isLoading = false;
             })
         } else {
@@ -71,14 +66,14 @@
                     <Loader />
                 {:else}                
                     <div class="form-inputs">
-                        <InputLetra id="inputNombre" label="Nombre *" bind:value={$form.nombre} error={$errors.nombre ? true : false} />
-                        <InputLetra id="inputApellido" label="Apellido *" bind:value={$form.apellido} error={$errors.apellido ? true : false} />
-                        <InputLibre id="inputCorreo" label="Correo *" type="email" bind:value={$form.correo} error={$errors.correo ? true : false} />
-                        <InputNumero id="inputTelefono" label="Telefono*" min={10} max={10} bind:value={$form.telefono} error={$errors.telefono ? true : false} />
-                        <InputLibre id="inputUsuario" label="Usuario *" type="text" bind:value={$form.usuario} error={$errors.usuario ? true : false} />
-                        <SelectRol id="cboRol" label="Rol *" bind:value={$form.id_rol} error={$errors.id_rol ? true : false} />
+                        <InputLetra id="inputNombre" label="Nombre" bind:value={$form.nombre} error={$errors.nombre ? true : false} />
+                        <InputLetra id="inputApellido" label="Apellido" bind:value={$form.apellido} error={$errors.apellido ? true : false} />
+                        <InputLibre id="inputCorreo" label="Correo" type="email" bind:value={$form.correo} error={$errors.correo ? true : false} />
+                        <InputNumero id="inputTelefono" label="Telefono" min={10} max={10} bind:value={$form.telefono} error={$errors.telefono ? true : false} />
+                        <InputLibre id="inputUsuario" label="Usuario" type="text" bind:value={$form.usuario} error={$errors.usuario ? true : false} />
+                        <SelectRol id="cboRol" label="Rol" route={gral_routes.get_roles} bind:value={$form.id_rol} error={$errors.id_rol ? true : false} />
                         {#if !isEdit}
-                            <InputLibre id="inputContraseña" label="Contraseña*" type="text" bind:value={$form.contraseña} error={$errors.contraseña ? true : false} />
+                            <InputLibre id="inputContraseña" label="Contraseña" type="text" bind:value={$form.contraseña} error={$errors.contraseña ? true : false} />
                         {/if}
                     </div>
                 {/if}
@@ -114,7 +109,7 @@
         display: flex;
         flex-direction: column;
         gap: 20px;
-        background: rgb(230, 223, 223);
+        background: #e6dfdf;
         width: 350px;
         height: fit-content;
         border-radius: 10px;

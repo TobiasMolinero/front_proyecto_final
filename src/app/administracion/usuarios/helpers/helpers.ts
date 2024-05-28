@@ -1,3 +1,6 @@
+import { http } from '@controlers';
+import { gral_routes } from '@routes'; 
+
 export const parsearDatosUsuario = (data: any) => {
     return {
         nombre: data.nombre,

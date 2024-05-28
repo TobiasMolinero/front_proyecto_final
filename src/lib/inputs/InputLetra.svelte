@@ -7,36 +7,7 @@
     $: value = value.replace(/[^A-Za-z\s]/g, '');
 </script>
 
-<div class="input {error ? 'error' : ''}">
-    <label for={id}>{label}</label>
-    <input id={id} type="text" bind:value autocomplete="off">
+<div class="relative flex flex-col gap-[5px]">
+    <label for={id} class={`${error ? 'text-[red]' : ''}`}>{label}</label>
+    <input id={id} type="text" bind:value autocomplete="off" class={`h-[35px] rounded-[10px] border pl-[10px] ${error ? 'border-[red] focus-visible:outline-none' : 'border-[#00000050] focus-visible:outline-[1px_solid_var(--dark-blue)]'}`}>
 </div>
-
-<style>
-        .input{
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-    }
-
-    .input > input{
-        height: 35px;
-        border-radius: 10px;
-        border: 1px solid #00000050;
-        padding-left: 10px;
-    }
-    .input > input:focus-visible{
-        outline: 1px solid var(--dark-blue);
-    }
-
-    .error > label{
-        color: red;
-    }
-    .error > input{
-        border: 1px solid red;
-    }
-    .error > input:focus-visible{
-        outline: none;
-    }
-</style>

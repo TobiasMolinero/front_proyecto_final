@@ -3,14 +3,7 @@
     import LateralNav from "./LateralNav.svelte";
 </script>
 
-<div class="body">
+<div class="grow flex">
     <LateralNav />
     <Routes />
 </div>
-
-<style>
-    .body{
-        flex-grow: 1;
-        display: flex;
-    }
-</style>

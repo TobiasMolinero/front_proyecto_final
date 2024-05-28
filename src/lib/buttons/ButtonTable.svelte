@@ -1,10 +1,14 @@
 <script lang="ts">
-    import { createEventDispatcher } from 'svelte';
+    import { createEventDispatcher, onMount } from 'svelte';
+    import iconEdit from '../../assets/iconos/editar.svg';
+    import iconDelete from '../../assets/iconos/borrar.svg';
+    import iconEditPassword from '../../assets/iconos/cambiar-contraseña.svg'
 
     export let id: number;
-    export let src: string;
     export let className: string;
     export let title: string;
+    
+    let src: string;
 
     const dispatch = createEventDispatcher();
 
@@ -17,6 +21,12 @@
     const deleteUser = () => {
         dispatch('delete');
     }
+
+    onMount(() => {
+        if(className === 'edit') src = iconEdit;
+        if(className === 'delete') src = iconDelete;
+        if(className === 'edit-password') src = iconEditPassword;
+    })
     
 </script>
 

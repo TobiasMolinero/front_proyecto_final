@@ -5,7 +5,6 @@
     import { loginSchema } from './schemas';
     import { loginValidator } from './validators';
     import { loginAction } from '@store';
-    import { push } from 'svelte-spa-router';
     import { onMount } from 'svelte';
 
     const {form, errors, handleSubmit} = createForm({

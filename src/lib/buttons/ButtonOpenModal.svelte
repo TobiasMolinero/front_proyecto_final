@@ -12,26 +12,4 @@
 
 </script>
 
-<button disabled={disabled} on:click={openForm}>{text}</button>
-
-<style>
-    button{
-        height: 100%;
-        width: 100%;
-        border: none;
-        background: var(--dark-blue);
-        border-radius: 10px;
-        font-size: 16px;
-        font-weight: 500;
-        color: aliceblue;
-        cursor: pointer;
-        box-shadow: 2px 2px 5px #00000050;
-    }
-    button:hover{
-        background: var(--regular-blue);
-    }
-    button:active{
-        background: var(--dark-blue);
-        box-shadow: inset 2px 2px 5px #ffffff50;
-    }
-</style>
+<button disabled={disabled} on:click={openForm} class="h-full w-full bg-[var(--dark-blue)] rounded-[10px] text-[16px] font-[500] text-[#fff] cursor-pointer shadow-[2px_2px_5px_#00000050] hover:bg-[var(--regular-blue)] active:bg-[var(--dark-blue)] active:shadow-[inset_2px_2px_5px_#ffffff50]">{text}</button>

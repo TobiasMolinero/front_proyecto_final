@@ -6,11 +6,9 @@
     import { question } from "@utils-alerts"; 
     import { updateCustomers } from "../store";
     import { deleteCustomer, filterCustomers } from "../helpers";
-    import type { EventButtonEdit } from "../../usuarios/interfaces";
+    import type { EventButtonEdit } from "@utils-interfaces";
     import type { Customers } from "../interfaces";
     import FormCustomer from "./FormCustomer.svelte";
-    import iconEdit from '../../../../assets/iconos/editar.svg';
-    import iconDelete from '../../../../assets/iconos/borrar.svg';
     
     export let valueFilter: string = '';
 
@@ -92,8 +90,8 @@
                                 <td>{customer.correo}</td>
                                 <td>{customer.telefono}</td>
                                 <td class="actions">
-                                    <ButtonTable className="edit" src={iconEdit} title="Editar usuario" id={customer.id_cliente} on:openform={openCloseForm}/>
-                                    <ButtonTable className="delete" src={iconDelete} title="Eliminar usuario" id={customer.id_cliente} on:delete={() => selectCustomer(customer.id_cliente)}/>
+                                    <ButtonTable className="edit" title="Editar usuario" id={customer.id_cliente} on:openform={openCloseForm}/>
+                                    <ButtonTable className="delete" title="Eliminar usuario" id={customer.id_cliente} on:delete={() => selectCustomer(customer.id_cliente)}/>
                                 </td>
                             </tr>
                         {:else}

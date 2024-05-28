@@ -2,9 +2,6 @@
     import { Loader, ButtonTable } from '@lib';
     import FormUser from './FormUser.svelte';
     import FormPassword from './FormPassword.svelte';
-    import iconEdit from '../../../../assets/iconos/editar.svg';
-    import iconDelete from '../../../../assets/iconos/borrar.svg';
-    import iconEditPassword from '../../../../assets/iconos/key.svg';
     import { http } from '@controlers';
     import { question } from '@utils-alerts';
     import { updateUsers } from '../store';
@@ -87,9 +84,9 @@
                                 <td>{user.usuario}</td>
                                 <td>{user.rol}</td>
                                 <td class="actions">
-                                    <ButtonTable className="edit" src={iconEdit} title="Editar usuario" id={user.id_usuario} on:openform={openCloseForm}/>
-                                    <ButtonTable className="delete" src={iconDelete} title="Eliminar usuario" id={user.id_usuario} on:delete={() => deleteUser(user.id_usuario, user.id_persona)}/>
-                                    <ButtonTable className="edit-password" src={iconEditPassword} title="Editar contraseña" id={user.id_usuario} on:openform={openCloseFormPassword}/>
+                                    <ButtonTable className="edit" title="Editar usuario" id={user.id_usuario} on:openform={openCloseForm}/>
+                                    <ButtonTable className="delete" title="Eliminar usuario" id={user.id_usuario} on:delete={() => deleteUser(user.id_usuario, user.id_persona)}/>
+                                    <ButtonTable className="edit-password" title="Editar contraseña" id={user.id_usuario} on:openform={openCloseFormPassword}/>
                                 </td>
                             </tr>
                         {:else}

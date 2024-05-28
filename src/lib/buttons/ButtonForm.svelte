@@ -14,44 +14,7 @@
 </script>
 
 {#if type === 'button'}
-    <button type="button" class="button" on:click={closeForm}>{text}</button>
+    <button type="button" class="font-[500] w-full h-[45px] rounded-[10px] border border-[var(--dark-blue)] bg-white text-[var(--text-black) cursor-pointer hover:bg-[#e0e0e0] active:bg-white"  on:click={closeForm}>{text}</button>
 {:else if type === "submit"}
-    <button type="submit" class="button-submit">{text}</button>
+    <button type="submit" class="font-[500] w-full h-[45px] rounded-[10px] border border-[var(--dark-blue)] bg-[var(--dark-blue)] text-[#fff] cursor-pointer hover:bg-[var(--regular-blue)] active:bg-[var(--dark-blue)]">{text}</button>
 {/if}
-
-<style>
-
-    .button{
-        font-weight: 500;
-        width: 100%;
-        height: 45px;
-        border-radius: 10px;
-        border: 1px solid var(--dark-blue);
-        background: white;
-        color: var(--text-black);
-        cursor: pointer;
-    }
-    .button:hover{
-        background: rgb(224, 224, 224);
-    }
-    .button:active{
-        background: white;
-    }
-
-    .button-submit{
-        font-weight: 500;
-        width: 100%;
-        height: 45px;
-        border-radius: 10px;
-        border: none;
-        background: var(--dark-blue);
-        color: #fff;
-        cursor: pointer;
-    }
-    .button-submit:hover{
-        background: var(--regular-blue);
-    }
-    .button-submit:active{
-        background: var(--dark-blue);
-    }
-</style>

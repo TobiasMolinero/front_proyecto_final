@@ -7,13 +7,18 @@ export const admin_routes = {
     edit_password: '/admin/usuarios/editpassword/',
 
     //Clientes
-    delete_customer: '/admin/clientes/delete/'
+    delete_customer: '/admin/clientes/delete/',
+
+    //Productos
+    edit_product: '/admin/productos/edit/',
+    delete_product: '/admin/productos/delete/'
 }
 
 export const gral_routes = {
     //Usuarios
     one_user: '/usuarios/one/',
     login: '/usuarios/login',
+    get_roles: '/usuarios/roles',
     
     
     //Clientes
@@ -21,4 +26,11 @@ export const gral_routes = {
     all_customers: '/clientes/all',
     create_customer: '/clientes/create',
     edit_customer: '/clientes/edit/',
+
+    //Productos
+    one_product: '/productos/one/',
+    all_products: '/productos/all',
+    create_product: '/productos/create',
+    get_categories: '/productos/categorias'
+
 }

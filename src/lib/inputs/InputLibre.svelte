@@ -16,70 +16,28 @@
 </script>
 
 {#if type === 'text'}
-    <div class="input {error ? 'error' : ''}">
-        <label for={id}>{label}</label>
-        <input id={id} type="text" bind:value autocomplete="off">
+    <div class="relative flex flex-col gap-[5px]">
+        <label for={id} class={`${error ? 'text-[red]' : ''}`}>{label}</label>
+        <input id={id} type="text" bind:value autocomplete="off" class={`h-[35px] rounded-[10px] border pl-[10px] ${error ? 'border-[red] focus-visible:outline-none' : 'border-[#00000050] focus-visible:outline-[1px_solid_var(--dark-blue)]'}`}>
     </div>
 {:else if type === 'password'}
-    <div class="input {error ? 'error' : ''}">
-        <label for={id}>{label}</label>
+    <div class="relative flex flex-col gap-[5px]">
+        <label for={id} class={`${error ? 'text-[red]' : ''}`}>{label}</label>
         {#if passwordVisible}
-            <input id={id} type="text" bind:value autocomplete="off">
+            <input id={id} type="text" bind:value autocomplete="off" class={`h-[35px] rounded-[10px] border pl-[10px] ${error ? 'border-[red] focus-visible:outline-none' : 'border-[#00000050] focus-visible:outline-[1px_solid_var(--dark-blue)]'}`}>
             <button type="button" on:click={showHiddenPassword}>
                 <img src={eye} alt="ver/ocultar contraseña" >
             </button>
         {:else}
-            <input id={id} type="password" bind:value autocomplete="off">
+            <input id={id} type="password" bind:value autocomplete="off" class={`h-[35px] rounded-[10px] border pl-[10px] ${error ? 'border-[red] focus-visible:outline-none' : 'border-[#00000050] focus-visible:outline-[1px_solid_var(--dark-blue)]'}`}>
             <button type="button" on:click={showHiddenPassword}>
                 <img src={eye_hidden} alt="ver/ocultar contraseña" >
             </button>
         {/if}
     </div>
 {:else if type="email"}
-    <div class="input {error ? 'error' : ''}">
-        <label for={id}>{label}</label>
-        <input id={id} type="email" bind:value required autocomplete="off">
+    <div class="relative flex flex-col gap-[5px]">
+        <label for={id} class={`${error ? 'text-[red]' : ''}`}>{label}</label>
+        <input id={id} type="email" bind:value required autocomplete="off" class={`h-[35px] rounded-[10px] border pl-[10px] ${error ? 'border-[red] focus-visible:outline-none' : 'border-[#00000050] focus-visible:outline-[1px_solid_var(--dark-blue)]'}`}>
     </div>
 {/if}
-
-
-<style>
-    .input{
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-    }
-
-    .input > input{
-        height: 35px;
-        border-radius: 10px;
-        border: 1px solid #00000050;
-        padding-left: 10px;
-    }
-    .input > input:focus-visible{
-        outline: 1px solid var(--dark-blue);
-    }
-    .input > button{
-        position: absolute;
-        background-color: transparent;
-        border: none;
-        right: 10px;
-        bottom: 4px;
-    }
-    .input img{
-        cursor: pointer;
-        width: 20px;
-    }
-
-
-    .error > label{
-        color: red;
-    }
-    .error > input{
-        border: 1px solid red;
-    }
-    .error > input:focus-visible{
-        outline: none;
-    }
-</style>

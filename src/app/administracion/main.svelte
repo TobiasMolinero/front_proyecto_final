@@ -5,12 +5,6 @@
     export let prefix: string;
 </script>
 
-<main>
+<main class="grow">
     <Router {prefix} {routes}/>
 </main>
-
-<style>
-    main{
-        flex: 1;
-    }
-</style>

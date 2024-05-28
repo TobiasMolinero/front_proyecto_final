@@ -9,3 +9,24 @@ export const mascaraDni = (dni: any) => {
     }
     return valor;
 }
+
+export const formatearMoneda = (value: string) => {
+    const valorNumerico = parseFloat(value.replace(/[^0-9]/g, ''));
+
+    if (!isNaN(valorNumerico)) {
+        return value = conversionMoneda(valorNumerico);
+    } else {
+        return value = '';
+    }
+};
+
+let conversionMoneda = (value: number) => {
+    let valorFormateado: string = (value / 100).toLocaleString('es-AR', {
+        style: 'currency',
+        currency: 'ARS',
+        maximumFractionDigits: 2,
+        minimumFractionDigits: 2,
+    });
+
+    return valorFormateado;
+};
