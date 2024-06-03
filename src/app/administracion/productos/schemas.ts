@@ -5,3 +5,7 @@ export let productSchema = {
     descripcion: '',
     precio: ''
 }
+
+export let categoryProductSchema = {
+    categoria: ''
+}

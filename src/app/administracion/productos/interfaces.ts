@@ -13,3 +13,7 @@ export interface Product{
     descripcion: string
     precio: number
 }
+
+export interface CategoryProduct{
+    categoria: string
+}

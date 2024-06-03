@@ -2,6 +2,7 @@
     import { onMount } from 'svelte';
     import { http } from '@controlers';
     import { listCategoryProduct } from '@lib-store';
+    import { updateCategoryProduct } from '../../app/administracion/productos/store';
 
     export let id: string;
     export let label: string;
@@ -9,12 +10,17 @@
     export let value: string;
     export let route: string;
 
+    
     const getOptions = () => {
         http.get(route).then(response => {
             $listCategoryProduct = response.data;
         })
     }
-
+    
+    updateCategoryProduct.subscribe(() => {
+        getOptions()
+    })
+    
     onMount(() => {
         if($listCategoryProduct[0].id_categoria_producto === 0){
             getOptions();

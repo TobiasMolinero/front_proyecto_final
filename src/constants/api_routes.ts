@@ -11,7 +11,10 @@ export const admin_routes = {
 
     //Productos
     edit_product: '/admin/productos/edit/',
-    delete_product: '/admin/productos/delete/'
+    delete_product: '/admin/productos/delete/',
+
+    //Categoria productos
+    delete_categorie_product: '/admin/cat-product/delete/'
 }
 
 export const gral_routes = {
@@ -19,7 +22,6 @@ export const gral_routes = {
     one_user: '/usuarios/one/',
     login: '/usuarios/login',
     get_roles: '/usuarios/roles',
-    
     
     //Clientes
     one_customer: '/clientes/one/',
@@ -31,6 +33,9 @@ export const gral_routes = {
     one_product: '/productos/one/',
     all_products: '/productos/all',
     create_product: '/productos/create',
-    get_categories: '/productos/categorias'
-
+    
+    //Categoria producto
+    get_categories: '/productos/categorias',
+    create_categorie_product: '/cat-producto/create',
+    edit_categorie_product: '/cat-producto/edit/'
 }

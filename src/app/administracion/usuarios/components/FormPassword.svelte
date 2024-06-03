@@ -76,6 +76,7 @@
 h2{
     text-align: center;
     padding: 10px 0;
+    font-weight: 600;
 }
 
 .form{

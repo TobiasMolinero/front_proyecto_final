@@ -9,11 +9,13 @@
     import { createProduct, editProduct, getOneProduct, parseProductData } from '../helpers';
     import type { DataProduct, Product } from '../interfaces';
     import { setUpdateProducts } from '../store';
+    import FormCategoryProduct from './FormCategoryProduct.svelte';
 
     export let id: number = 0;
     export let isEdit: boolean;
 
-    let isLoading: boolean = true;
+    let isLoading: boolean = false;
+    let formCategory: boolean = false
 
     const dispatch = createEventDispatcher();
 
@@ -35,6 +37,10 @@
             }
         }
     })
+    
+    const openCloseFormCategory = () => {
+        formCategory = formCategory ? false : true;
+    }
 
     onMount(() => {
         if(isEdit){
@@ -63,7 +69,10 @@
                     <InputLibre id="inputCodProducto" label="Codigo" type="text" bind:value={$form.cod_producto} error={$errors.cod_producto ? true : false}/>
                     <InputLetra id="inputNombreProducto" label="Nombre producto" bind:value={$form.nombre_producto} error={$errors.nombre_producto ? true : false}/>
                     <InputLibre id="inputDescripcion" type="text" label="Descripcion(Opcional)" bind:value={$form.descripcion} error={$errors.descripcion ? true : false}/>
-                    <SelectCategoryProduct id="cboCategoriaProducto" label="Categoria" bind:value={$form.categoria} route={gral_routes.get_categories} error={$errors.categoria ? true : false}/>
+                    <div class="flex items-end gap-x-[5px]">
+                        <SelectCategoryProduct id="cboCategoriaProducto" label="Categoria" bind:value={$form.categoria} route={gral_routes.get_categories} error={$errors.categoria ? true : false}/>
+                        <button on:click={openCloseFormCategory} type="button" class="flex justify-center items-center bg-[var(--dark-blue)] text-[#fff] text-[18px] w-[40px] h-[35px] rounded-[10px] cursor-pointer hover:bg-[var(--regular-blue)] active:bg-[var(--dark-blue)]" title="Agregar categoría">+</button>
+                    </div>
                     <InputMoneda id="inputPrecio" label="Precio" bind:value={$form.precio} error={$errors.precio ? true : false}/>
                 </div>
             {/if}
@@ -72,13 +81,17 @@
                   <p>Debe completar todos los campos obligatorios.</p>
                 {/if}
                 <div class="form-buttons">
-                    <ButtonForm type="button" text="Cancelar" on:closeform />
+                    <ButtonForm type="button" text="Cancelar" on:closeform/>
                     <ButtonForm type="submit" text={isEdit ? 'Editar' : 'Crear'} />
                 </div>
             </div>
         </form>
     </div>
 </div>
+
+{#if formCategory}
+    <FormCategoryProduct isEdit={false} on:closeform={openCloseFormCategory} />
+{/if}
 
 <style>
     .background-form{
@@ -108,6 +121,7 @@
     h2{
         text-align: center;
         padding: 10px 0;
+        font-weight: 600;
     }
     
     .form{
