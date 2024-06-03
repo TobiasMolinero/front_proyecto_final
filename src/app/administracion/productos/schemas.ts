@@ -7,5 +7,5 @@ export let productSchema = {
 }
 
 export let categoryProductSchema = {
-    categoria: ''
+    descripcion: ''
 }
