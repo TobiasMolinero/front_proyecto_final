@@ -4,6 +4,16 @@
   import Header from '../../components/Header.svelte';
   import Login from '../../components/Login.svelte';
   import { loginStore } from '@store';   
+  import { onMount } from 'svelte';
+
+  onMount(() => {
+    const storeValued = localStorage.getItem('login')
+    if(storeValued){
+      $loginStore.isLogin = JSON.parse(storeValued);
+    } else {
+      $loginStore.isLogin = false;
+    }
+  })
 </script>
 
 <div class="main">

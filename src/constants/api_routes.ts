@@ -18,6 +18,7 @@ export const admin_routes = {
 }
 
 export const gral_routes = {
+    validate_session: '/validar-sesion',
     //Usuarios
     one_user: '/usuarios/one/',
     login: '/usuarios/login',

@@ -8,6 +8,6 @@ export let productValidator = v.obj({
     precio: v.str().required()
 }) 
 
-export let categoryProdcutValidator = v.obj({
+export let categoryProductValidator = v.obj({
     descripcion: v.str().required()
 })

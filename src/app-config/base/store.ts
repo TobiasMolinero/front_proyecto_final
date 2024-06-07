@@ -1,14 +1,23 @@
 import { writable } from "svelte/store";
+import { location, push } from 'svelte-spa-router'
 
 let login = {
-    isLogin: true,
+    isLogin: false,
     userName: '',
     rol: 'admin',
     id: 0
 }
 
+const localStorageLogin = (userName: string, rol: string, id: number) => {
+    localStorage.setItem('login', JSON.stringify(true))
+    localStorage.setItem('id_user', JSON.stringify(id))
+    localStorage.setItem('username', userName)
+    localStorage.setItem('rol', rol)
+}
+
 export let loginAction = {
     login: (userName: string, rol: string, id: number) => {
+        
         loginStore.update((value) => {
             value.isLogin = true;
             value.userName = userName;
@@ -16,18 +25,29 @@ export let loginAction = {
             value.id = id;
             return value;
         })
+        
+        location.subscribe(value => {
+            if(value === '/'){
+                push('/Administracion/Inicio') 
+            } else {
+                push(value)
+            }
+        })
+
+        localStorageLogin(userName, rol, id)
     },
 
     logout: () => {
         loginStore.update(value => {
-            localStorage.removeItem('token')
             value.isLogin = false;
             value.userName = '';
             value.rol = '';
             value.id = 0;
             return value;
         })
+        localStorage.clear();
     }
 }
+
 
 export let loginStore = writable(login);

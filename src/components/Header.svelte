@@ -1,5 +1,6 @@
 <script lang="ts">
     import { fade } from 'svelte/transition';
+    import { push } from 'svelte-spa-router';
     import logo from '../assets/logo.png';
     import IconUser from '../assets/iconos/usuario.svg';
     import userIcon from '../assets/iconos/user-view.svg';
@@ -20,10 +21,12 @@
         }).then(result => {
             if (result.isConfirmed){
                 
+                push('/');
+                
                 success.fire({
                     text: 'La sesión finalizo con exito.'
                 })
-
+                
                 loginAction.logout();
             } 
         })

@@ -7,7 +7,7 @@ export let configHTTP = () => {
 }
 
 export let configInterceptor = () => {
-    // axios.interceptors.request.use(request.fn_request, request.error_request);
+    axios.interceptors.request.use(request.fn_request, request.error_request);
     axios.interceptors.response.use(response.fn_response, response.error_response);
 }
 

@@ -1,11 +1,10 @@
 <script lang="ts">
-    import logo from '../assets/logo.png'
+    import logo from '../assets/herramientas.webp'
     import { InputLibre, ButtonForm } from "@lib";
     import { createForm, http } from '@controlers';
     import { loginSchema } from './schemas';
     import { loginValidator } from './validators';
     import { loginAction } from '@store';
-    import { onMount } from 'svelte';
 
     const {form, errors, handleSubmit} = createForm({
         initialValues: loginSchema,
@@ -24,7 +23,6 @@
         }
     })
 
-    onMount(loginAction.logout)
 </script>
 
 
@@ -32,16 +30,19 @@
     <div class="background">
         <div class="hero">
             <div class="content-hero">
-                <img class="image" src={logo} alt="imagen">
-                <div class="text">
-                    <h1>Sistema de gestión para empresas agricolas</h1>
-                    <h5>Desarrollado por Tobias Molinero</h5>
+                <div class="flex items-center gap-[20px]">
+                    <img class="image w-[180px] h-[180px]" src={logo} alt="imagen">
+                    <h1 class="text-white text-[40px] font-[600]">ToolManagement</h1>
+                </div>
+                <div class="mt-[20px]">
+                    <h2 class="text-white text-[30px]">Sistema de gestión para negocios</h2>
+                    <h5 class="text-[#cfcfcf]">Desarrollado por Tobias Molinero</h5>
                 </div>
             </div>
         </div>
         <div class="container-login">
             <div class="login">
-                <h2>Iniciar Sesion</h2>
+                <h2 class="text-center mb-[20px]">Iniciar Sesion</h2>
                 <form on:submit|preventDefault={handleSubmit} class="form-login">
                     <div class="inputs">
                         <InputLibre label="Usuario*" type="text" id="inputUsuario" bind:value={$form.usuario} error={$errors.usuario ? true : false}/>
@@ -97,18 +98,14 @@
         width: 80%;
     }
 
-    .text{
-        transform: translateY(-25px);
-    }
-
-    h1{
+    /* h1{
         color: #b2c261;
     }
 
     h5{
         color: #cfcfcf;
         font-weight: 400;
-    }
+    } */
 
     .container-login{
         display: flex;
@@ -127,11 +124,11 @@
         padding: 20px;
         width: 340px;
     }
-
+/* 
     h2{
         text-align: center;
         margin-bottom: 20px;
-    }
+    } */
 
     .form-login{
         width: 85%;

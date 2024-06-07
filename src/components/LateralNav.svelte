@@ -56,13 +56,13 @@
                     <p>Inventario</p>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="/#/Administracion/Configuracion">
+                    <img src={iconConfig} alt="Configuracion">
+                    <p>Configuración</p>
+                </a>
+            </li>
             {#if $loginStore.rol === 'admin'}
-                <li class="nav-item">
-                    <a href="/#/Administracion/Configuracion">
-                        <img src={iconConfig} alt="Configuracion">
-                        <p>Configuración</p>
-                    </a>
-                </li>
                 <li class="nav-item">
                     <a href="/#/Administracion/Usuarios">
                         <img src={userManagement} alt="Gestión de usuarios">

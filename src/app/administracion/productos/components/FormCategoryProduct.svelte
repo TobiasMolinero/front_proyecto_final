@@ -5,7 +5,7 @@
     import { createForm, http } from '@controlers';
     import { gral_routes } from '@routes';
     import { categoryProductSchema } from '../schemas';
-    import { categoryProdcutValidator } from '../validators';
+    import { categoryProductValidator } from '../validators';
     import { setUpdateCategoryProduct } from '../store';
 
     export let id: number = 0;
@@ -17,7 +17,7 @@
 
     const {form, errors, handleSubmit} = createForm({
         initialValues: categoryProductSchema,
-        validationSchema: categoryProdcutValidator,
+        validationSchema: categoryProductValidator,
         onSubmit: data => {
             if(isEdit){
                 console.log(data)
