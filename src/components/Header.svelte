@@ -1,7 +1,7 @@
 <script lang="ts">
     import { fade } from 'svelte/transition';
     import { push } from 'svelte-spa-router';
-    import logo from '../assets/logo.png';
+    import logo from '../assets/herramientas.webp';
     import IconUser from '../assets/iconos/usuario.svg';
     import userIcon from '../assets/iconos/user-view.svg';
     import logoutIcon from '../assets/iconos/logout.svg';
@@ -34,7 +34,10 @@
 </script>
 
 <header class="header">
-    <img class="logo" src={logo} alt="">
+    <div class="flex items-center gap-[10px]">
+        <img class="logo" src={logo} alt="">
+        <p class="text-white font-[500]">ToolManagement</p>
+    </div>
     <span>
         <button on:click={showHiddenDropdownMenu}>
             {user}
@@ -77,8 +80,8 @@
     }
 
     .logo{
-        width: 200px;
-        height: 70px;
+        width: 40px;
+        height: 40px;
     }
 
     span{

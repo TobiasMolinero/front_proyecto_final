@@ -7,12 +7,6 @@ export interface DataCustomer{
     telefono: string
 }
 
-export interface EventSearcher{
-    detail: {
-        value: string
-    }
-}
-
 export type Customers = {
     id_cliente: number,
     nombre: string,

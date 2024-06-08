@@ -4,7 +4,7 @@
     import iconOrders from '../assets/iconos/pedidos.svg';
     import iconBills from '../assets/iconos/gastos.svg';
     import iconClientes from '../assets/iconos/clientes.svg';
-    import iconProduct from '../assets/iconos/palta.svg';
+    import iconProduct from '../assets/iconos/barcode.svg';
     import iconInventory from '../assets/iconos/inventario.svg';
     import iconConfig from '../assets/iconos/gear.svg';
     import userManagement from '../assets/iconos/user-manag.svg';

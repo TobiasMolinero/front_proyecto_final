@@ -8,8 +8,10 @@
 
   onMount(() => {
     const storeValued = localStorage.getItem('login')
+    const userName = localStorage.getItem('username')
     if(storeValued){
       $loginStore.isLogin = JSON.parse(storeValued);
+      $loginStore.userName = userName ? userName : 'Usuario';
     } else {
       $loginStore.isLogin = false;
     }

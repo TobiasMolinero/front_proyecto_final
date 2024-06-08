@@ -13,3 +13,7 @@ export interface CategoryProductInterface{
     id_categoria_producto: number
     descripcion: string
 }
+
+export interface EventSearcher {
+    detail: {value: string}
+}

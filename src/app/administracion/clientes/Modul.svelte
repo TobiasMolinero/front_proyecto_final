@@ -1,7 +1,7 @@
 <script lang="ts">
     import MenuCustomers from "./components/MenuCustomers.svelte";
     import TableCustomers from "./components/TableCustomers.svelte";
-    import type { EventSearcher } from "./interfaces";
+    import type { EventSearcher } from "@utils-interfaces";
 
     let valueFilter: string;
 
@@ -13,7 +13,7 @@
 
 <div class="flex flex-col h-full">
     <h2 class="font-[600] text-[25px] text-center p-[10px]">Seguimiento de clientes</h2>
-    <MenuCustomers on:sendvalue={getValueFilter}/>
-    <TableCustomers {valueFilter}/>
+    <MenuCustomers on:sendvalue={getValueFilter} />
+    <TableCustomers {valueFilter} />
 </div>
 

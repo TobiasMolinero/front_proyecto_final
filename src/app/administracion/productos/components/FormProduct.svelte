@@ -7,7 +7,7 @@
     import { productSchema } from '../schemas';
     import { productValidator } from '../validators';
     import { createProduct, editProduct, getOneProduct, parseProductData } from '../helpers';
-    import type { DataProduct, Product } from '../interfaces';
+    import type { DataProduct, DataProductToCreateEdit, Product } from '../interfaces';
     import { setUpdateProducts } from '../store';
     import FormCategoryProduct from './FormCategoryProduct.svelte';
 
@@ -22,8 +22,8 @@
     const {form, errors, handleSubmit} = createForm({
         initialValues: productSchema,
         validationSchema: productValidator,
-        onSubmit: (data: DataProduct) => {
-            const dataProduct: Product = parseProductData(data)
+        onSubmit: (data) => {
+            const dataProduct: DataProductToCreateEdit = parseProductData(data)
             if(isEdit){
                 editProduct(id, dataProduct).then(() => {
                     setUpdateProducts();

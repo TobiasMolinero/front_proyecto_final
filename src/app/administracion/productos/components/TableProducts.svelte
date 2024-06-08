@@ -7,11 +7,14 @@
     import type { EventButtonEdit } from '@utils-interfaces';
     import { updateProducts } from '../store';
     import FormProduct from './FormProduct.svelte';
-    import { deleteProduct } from '../helpers';
+    import { deleteProduct, filterProducts } from '../helpers';
+    import type { Product } from '../interfaces';
     
+    export let valueFilter: string = '';
 
     let isLoading: boolean = true;
-    let products: any[] = [];
+    let products: Product[];
+    let copyProducts: Product[];
     let form: boolean = false;
     let id_product: number; 
 
@@ -22,7 +25,7 @@
         })
     }
 
-    const openCloseForm = (e: EventButtonEdit ) => {
+    const openCloseForm = (e: EventButtonEdit) => {
         id_product = e.detail.id;
         form ? form = false : form = true;
     }
@@ -47,6 +50,12 @@
     onMount(() => {
         getProducts();
     })
+
+    $: if(valueFilter.trim() === ''){
+        copyProducts = products;
+    } else {
+        copyProducts = filterProducts(products, valueFilter)
+    }
 </script>
 
 <div class="section-table">
@@ -70,18 +79,24 @@
                         </td>
                     </tr>
                 {:else if products}
-                    {#each products as product}
+                    {#each copyProducts as product}
                         <tr>
                             <td>{product.cod_producto}</td>
                             <td>{product.nombre_producto}</td>
                             <td>{product.categoria}</td>
                             <td>{product.descripcion !== '' ? product.descripcion : ' - '}</td>
-                            <td>{product.precio}</td>
+                            <td>$ {product.precio}</td>
                             <td class="actions">
                                 <ButtonTable id={product.id_producto} title='Editar producto' className="edit" on:openform={openCloseForm}/> 
                                 <ButtonTable id={product.id_producto} title='Eliminar producto' className="delete" on:delete={() => selectProduct(product.id_producto)}/> 
                             </td>
                         </tr>
+                    {:else}
+                    <tr>
+                        <td colspan="6">
+                            <h3>No se encontraron resultados</h3>
+                        </td>
+                    </tr>
                     {/each}
                 {/if}
             </tbody>

@@ -6,10 +6,20 @@ export interface DataProduct{
     precio: string
 }
 
+export interface DataProductToCreateEdit{
+    cod_producto: string
+    nombre_producto: string
+    descripcion: string
+    id_categoria_producto: number
+    precio: number
+}
+
 export interface Product{
+    id_producto: number
     cod_producto: string
     nombre_producto: string
     id_categoria_producto: number
+    categoria: string
     descripcion: string
     precio: number
 }
