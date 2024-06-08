@@ -1,12 +1,12 @@
 <script lang="ts">
-    import { ButtonOpenModal, SelectCategoryProduct } from '@lib';
+    import { ButtonOpenModal } from '@lib';
     import FormProduct from './FormProduct.svelte';
-  import Searcher from '../../../../lib/inputs/Searcher.svelte';
+    import Searcher from '../../../../lib/inputs/Searcher.svelte';
 
     let form: boolean;
 
     const openCloseForm = () => {
-        form ? form = false : form = true;
+        form = form ? false : true;
     }
 </script>
 

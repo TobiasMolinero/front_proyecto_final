@@ -14,6 +14,11 @@ export interface CategoryProductInterface{
     descripcion: string
 }
 
+export interface CategoryBillInterface{
+    id_categoria_gasto: number
+    descripcion: string
+}
+
 export interface EventSearcher {
     detail: {value: string}
 }

@@ -1,7 +1,7 @@
 <script lang="ts">
     import { createEventDispatcher, onMount } from 'svelte';
     import { fade } from 'svelte/transition';
-    import { Loader, InputLetra, InputLibre, InputMoneda, SelectCategoryProduct, ButtonForm } from '@lib'; 
+    import { Loader, InputLetra, ButtonForm } from '@lib'; 
     import { createForm, http } from '@controlers';
     import { gral_routes } from '@routes';
     import { categoryProductSchema } from '../schemas';
@@ -23,7 +23,7 @@
                 console.log(data)
             } else {
                 console.log(data)
-                http.post(gral_routes.create_categorie_product, data)
+                http.post(gral_routes.create_category_product, data)
                 .then(() => {
                     setUpdateCategoryProduct()
                     dispatch('closeform')

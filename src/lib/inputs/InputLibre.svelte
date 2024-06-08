@@ -25,13 +25,13 @@
         <label for={id} class={`${error ? 'text-[red]' : ''}`}>{label}</label>
         {#if passwordVisible}
             <input id={id} type="text" bind:value autocomplete="off" class={`h-[35px] rounded-[10px] border pl-[10px] ${error ? 'border-[red] focus-visible:outline-none' : 'border-[#00000050] focus-visible:outline-[1px_solid_var(--dark-blue)]'}`}>
-            <button type="button" on:click={showHiddenPassword}>
-                <img src={eye} alt="ver/ocultar contraseña" >
+            <button type="button" on:click={showHiddenPassword} class="absolute bottom-[7px] right-2">
+                <img src={eye} alt="ver/ocultar contraseña" class="h-[20px]">
             </button>
         {:else}
             <input id={id} type="password" bind:value autocomplete="off" class={`h-[35px] rounded-[10px] border pl-[10px] ${error ? 'border-[red] focus-visible:outline-none' : 'border-[#00000050] focus-visible:outline-[1px_solid_var(--dark-blue)]'}`}>
-            <button type="button" on:click={showHiddenPassword}>
-                <img src={eye_hidden} alt="ver/ocultar contraseña" >
+            <button type="button" on:click={showHiddenPassword} class="absolute bottom-[7px] right-2">
+                <img src={eye_hidden} alt="ver/ocultar contraseña" class="h-[20px]">
             </button>
         {/if}
     </div>

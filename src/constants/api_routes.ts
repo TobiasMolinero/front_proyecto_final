@@ -36,7 +36,15 @@ export const gral_routes = {
     create_product: '/productos/create',
     
     //Categoria producto
-    get_categories: '/productos/categorias',
-    create_categorie_product: '/cat-producto/create',
-    edit_categorie_product: '/cat-producto/edit/'
+    get_categories_products: '/productos/categorias',
+    create_category_product: '/cat-producto/create',
+    edit_category_product: '/cat-producto/edit/',
+
+    //Gastos
+
+    //Categoria_gastos
+    get_categories_bills: '/cat-gastos/all',
+    create_category_bills: '/cat-gastos/create',
+    edit_category_bills: '/cat-gastos/edit/',
+    delete_category_bills: '/cat-gastos/delete/',
 }

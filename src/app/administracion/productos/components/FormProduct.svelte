@@ -7,7 +7,7 @@
     import { productSchema } from '../schemas';
     import { productValidator } from '../validators';
     import { createProduct, editProduct, getOneProduct, parseProductData } from '../helpers';
-    import type { DataProduct, DataProductToCreateEdit, Product } from '../interfaces';
+    import type { DataProductToCreateEdit } from '../interfaces';
     import { setUpdateProducts } from '../store';
     import FormCategoryProduct from './FormCategoryProduct.svelte';
 
@@ -70,7 +70,7 @@
                     <InputLetra id="inputNombreProducto" label="Nombre producto" bind:value={$form.nombre_producto} error={$errors.nombre_producto ? true : false}/>
                     <InputLibre id="inputDescripcion" type="text" label="Descripcion(Opcional)" bind:value={$form.descripcion} error={$errors.descripcion ? true : false}/>
                     <div class="flex items-end gap-x-[5px]">
-                        <SelectCategoryProduct id="cboCategoriaProducto" label="Categoria" bind:value={$form.categoria} route={gral_routes.get_categories} error={$errors.categoria ? true : false}/>
+                        <SelectCategoryProduct id="cboCategoriaProducto" label="Categoria" bind:value={$form.categoria} route={gral_routes.get_categories_products} error={$errors.categoria ? true : false}/>
                         <button on:click={openCloseFormCategory} type="button" class="flex justify-center items-center bg-[var(--dark-blue)] text-[#fff] text-[18px] w-[40px] h-[35px] rounded-[10px] cursor-pointer hover:bg-[var(--regular-blue)] active:bg-[var(--dark-blue)]" title="Agregar categoría">+</button>
                     </div>
                     <InputMoneda id="inputPrecio" label="Precio" bind:value={$form.precio} error={$errors.precio ? true : false}/>
