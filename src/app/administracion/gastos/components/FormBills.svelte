@@ -6,6 +6,9 @@
     import { SelectCategoryBills, InputLetra, InputMoneda, InputFecha, Loader, ButtonForm } from "@lib"; 
     import { billSchema } from "../schemas";
     import { billValidator } from "../validators";
+    import { createBill, editBill, getOneBill, parseBillData } from "../helpers";
+    import type { DataBillToCreateEdit } from "../interfaces";
+  import { setUpdateBills } from "../store";
 
     export let id: number = 0;
     export let isEdit: boolean = false;
@@ -19,15 +22,39 @@
         initialValues: billSchema,
         validationSchema: billValidator,
         onSubmit: data => {
-            console.log(data)
+            const dataBill: DataBillToCreateEdit = parseBillData(data)
+            if(isEdit){
+                editBill(id, dataBill).then(() => {
+                    setUpdateBills()
+                    dispatch('closeform', {id: 0})
+                })
+            } else {
+                createBill(dataBill).then(() => {
+                    setUpdateBills()
+                    dispatch('closeform')
+                })
+            }
         }
     })
-    
+
+    onMount(() => {
+        if(isEdit){
+            getOneBill(id).then((response) => {
+                $form.detalle = response.data[0].detalle
+                $form.categoria = `${response.data[0].id_categoria_gasto}`
+                $form.fecha = response.data[0].fecha.substring(0, 10)
+                $form.importe = response.data[0].importe
+                isLoading = false
+            })
+        } else {
+            isLoading = false
+        }
+    })
 </script>
 
 <div transition:fade={{duration: 150}} class="background-form">
     <div class="container-form">
-        <h2>{isEdit ? 'Editar producto' : 'Crear producto'}</h2>
+        <h2>{isEdit ? 'Editar gasto' : 'Registrar gasto'}</h2>
         <form on:submit|preventDefault={handleSubmit} class="form">
             {#if isLoading}
                 <Loader />
@@ -47,7 +74,7 @@
                   <p>Debe completar todos los campos obligatorios.</p>
                 {/if}
                 <div class="form-buttons">
-                    <ButtonForm type="button" text="Cancelar" on:closeform/>
+                    <ButtonForm type="button" text="Cancelar" on:closeform />
                     <ButtonForm type="submit" text={isEdit ? 'Editar' : 'Crear'} />
                 </div>
             </div>

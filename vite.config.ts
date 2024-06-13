@@ -13,6 +13,7 @@ export default defineConfig({
       '@store': '/src/app-config/base/store.ts',
       '@utils-alerts': '/src/utils/alerts.ts',
       '@utils-interfaces': '/src/utils/interfaces.ts',
+      '@utils-helpers': '/src/utils/helpers.ts',
       '@routes': '/src/constants/api_routes.ts',
     }
   }

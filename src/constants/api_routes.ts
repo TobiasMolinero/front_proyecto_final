@@ -41,6 +41,11 @@ export const gral_routes = {
     edit_category_product: '/cat-producto/edit/',
 
     //Gastos
+    get_bills: '/gastos/all',
+    get_one_bill: '/gastos/one/',
+    create_bill: '/gastos/create',
+    edit_bill: '/gastos/edit/',
+    delete_bill: '/gastos/delete/',
 
     //Categoria_gastos
     get_categories_bills: '/cat-gastos/all',

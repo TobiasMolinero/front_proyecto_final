@@ -1,0 +1,148 @@
+<script lang="ts">
+    import { onMount } from 'svelte';
+    import { http } from '@controlers';
+    import { gral_routes } from '@routes';
+    import { ButtonTable, Loader } from '@lib';
+    import { question } from '@utils-alerts';
+    import type { EventButtonEdit } from '@utils-interfaces';
+    import { updateBills } from '../store';
+    import type { Bill } from '../interfaces';
+    import FormBills from './FormBills.svelte';
+    import { deleteBill } from '../helpers';
+    
+    // export let valueFilter: string = '';
+
+    let isLoading: boolean = true;
+    let bills: Bill[];
+    let form: boolean = false;
+    let id_bill: number; 
+
+    const getBills = () => {
+        http.get(gral_routes.get_bills).then(response => {
+            bills = response.data;
+            isLoading = false;
+        })
+    }
+
+    const openCloseForm = (e: EventButtonEdit) => {
+        id_bill = e.detail.id;
+        form ? form = false : form = true;
+    }
+
+    const selectBill = (id: number) => {  
+        question.fire({
+            text: '¿Seguro que desea dar de baja este registro? Esta acción es irreversible.'
+        })
+        .then((response) => {
+            if(response.isConfirmed){
+                deleteBill(id).then(() => {
+                    getBills()
+                })
+            }
+        })
+    }
+
+    updateBills.subscribe(() => {
+        getBills();
+    })
+
+    onMount(() => {
+        getBills();
+    })
+
+</script>
+
+<div class="section-table">
+    <div class="container-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Detalle</th>
+                    <th>Categoría</th>
+                    <th>importe</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {#if isLoading}
+                    <tr>
+                        <td colspan="7">
+                            <Loader />
+                        </td>
+                    </tr>
+                {:else if bills}
+                    {#each bills as bill}
+                        <tr>
+                            <td>{bill.fecha.substring(0, 10)}</td>
+                            <td>{bill.detalle}</td>
+                            <td>{bill.categoria}</td>
+                            <td>$ {bill.importe}</td>
+                            <td class="actions">
+                                <ButtonTable id={bill.id_gasto} title='Editar gasto' className="edit" on:openform={openCloseForm}/> 
+                                <ButtonTable id={bill.id_gasto} title='Eliminar gasto' className="delete" on:delete={() => selectBill(bill.id_gasto)}/> 
+                            </td>
+                        </tr>
+                    {:else}
+                    <tr>
+                        <td colspan="6">
+                            <h3>No se encontraron resultados</h3>
+                        </td>
+                    </tr>
+                    {/each}
+                {/if}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{#if form}
+    <FormBills id={id_bill} isEdit={true} on:closeform={openCloseForm}/>
+{/if}
+
+
+<style>
+    .section-table{
+        flex: 1;
+        padding: 20px;
+    }
+
+    .container-table{
+        max-width: 100%;
+        max-height: 385px;
+        display: grid;
+        place-items: start;
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: var(--dark-blue) transparent;
+        border: 1px solid var(--dark-blue);
+    }
+
+    table{
+        background: white;
+        text-align: center;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    thead{
+        background: var(--dark-blue);
+        color: white;
+        height: 50px;
+        position: sticky;
+        top: 0;
+        left: 0;
+        z-index: 2;
+    }
+
+    tbody tr td{
+        padding: 15px
+    }
+
+    .actions{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+    }
+</style>
