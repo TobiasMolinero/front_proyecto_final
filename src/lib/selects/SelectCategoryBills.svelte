@@ -1,14 +1,16 @@
 <script lang="ts">
-    import { onMount } from "svelte";
+    import { afterUpdate, onMount } from "svelte";
     import { http } from '@controlers';
     import { listCategoryBills } from '@lib-store';
-    import { updateCategoryBills } from "../../app/administracion/gastos/store";
 
     export let id: string;
     export let label: string;
     export let error: boolean = false;
     export let value: string;
     export let route: string;
+    export let updateCategories: boolean;
+
+    let previousUpdateValue: boolean;
 
     const getOptions = () => {
         http.get(route).then(response => {
@@ -16,15 +18,19 @@
         })
     }
     
-    updateCategoryBills.subscribe(() => {
-        getOptions()
-    })
-    
     onMount(() => {
+        previousUpdateValue = updateCategories;
         if($listCategoryBills[0].id_categoria_gasto === 0){
             getOptions();
         } else {
             return null;
+        }
+    })
+
+    afterUpdate(() => {
+        if(updateCategories !== previousUpdateValue){
+            getOptions();
+            previousUpdateValue = updateCategories;
         }
     })
     

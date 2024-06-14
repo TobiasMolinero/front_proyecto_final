@@ -81,7 +81,7 @@
                   <p>Debe completar todos los campos obligatorios.</p>
                 {/if}
                 <div class="form-buttons">
-                    <ButtonForm type="button" text="Cancelar" on:closeform/>
+                    <ButtonForm type="button" text="Cancelar" on:closeform />
                     <ButtonForm type="submit" text={isEdit ? 'Editar' : 'Crear'} />
                 </div>
             </div>

@@ -24,7 +24,9 @@
       "@utils-helpers": ["./src/utils/helpers.ts"],
       "@routes": ["./src/constants/api_routes.ts"],
     },
-    "isolatedModules": true
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
   },
   "include": ["src/**/*.ts", "src/**/*.js", "src/**/*.svelte"],
   "references": [{ "path": "./tsconfig.node.json" }]

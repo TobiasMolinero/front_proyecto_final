@@ -1,25 +1,27 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
+    import { onMount, afterUpdate } from 'svelte';
     import { http } from '@controlers';
     import { gral_routes } from '@routes';
     import { ButtonTable, Loader } from '@lib';
     import { question } from '@utils-alerts';
     import type { EventButtonEdit } from '@utils-interfaces';
-    import { updateBills } from '../store';
-    import type { Bill } from '../interfaces';
+    import { storeBills } from '../store';
     import FormBills from './FormBills.svelte';
     import { deleteBill } from '../helpers';
+    import type { Bill } from '../interfaces';
     
-    // export let valueFilter: string = '';
+    export let updateBills: boolean;
 
+    let previousUpdateValue: boolean;
     let isLoading: boolean = true;
-    let bills: Bill[];
     let form: boolean = false;
     let id_bill: number; 
+    let bills: Bill[];
 
     const getBills = () => {
         http.get(gral_routes.get_bills).then(response => {
             bills = response.data;
+            $storeBills = bills
             isLoading = false;
         })
     }
@@ -42,14 +44,22 @@
         })
     }
 
-    updateBills.subscribe(() => {
-        getBills();
-    })
-
     onMount(() => {
-        getBills();
+        previousUpdateValue = updateBills;
+        if($storeBills[0].id_gasto === 0){
+            getBills();
+        } else {
+            bills = $storeBills;
+            isLoading = false;
+        }
     })
 
+    afterUpdate(() => {
+        if(updateBills !== previousUpdateValue){
+            getBills();
+            previousUpdateValue = updateBills;
+        }
+    })
 </script>
 
 <div class="section-table">
@@ -84,11 +94,11 @@
                             </td>
                         </tr>
                     {:else}
-                    <tr>
-                        <td colspan="6">
-                            <h3>No se encontraron resultados</h3>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td colspan="6">
+                                <h3>No se encontraron resultados</h3>
+                            </td>
+                        </tr>
                     {/each}
                 {/if}
             </tbody>
@@ -97,7 +107,7 @@
 </div>
 
 {#if form}
-    <FormBills id={id_bill} isEdit={true} on:closeform={openCloseForm}/>
+    <FormBills id={id_bill} isEdit={true} on:closeform={openCloseForm} on:getbills={getBills} />
 {/if}
 
 

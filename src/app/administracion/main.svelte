@@ -5,6 +5,6 @@
     export let prefix: string;
 </script>
 
-<main class="grow">
+<main class="h-[90vh] grow overflow-auto">
     <Router {prefix} {routes}/>
 </main>

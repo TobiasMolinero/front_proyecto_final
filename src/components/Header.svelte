@@ -33,7 +33,7 @@
     }
 </script>
 
-<header class="header">
+<header class="header h-[10%]">
     <div class="flex items-center gap-[10px]">
         <img class="logo" src={logo} alt="">
         <p class="text-white font-[500]">ToolManagement</p>
@@ -69,7 +69,6 @@
 <style>
     .header{
         padding: 0 20px;
-        height: min-content;
         background: var(--light-blue);
         background: grey;
         box-shadow: 0 0 10px #00000080;

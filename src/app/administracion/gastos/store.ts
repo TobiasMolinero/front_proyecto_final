@@ -1,12 +1,12 @@
 import { writable } from 'svelte/store';
 
-export let setUpdateBills = () => {
-    updateBills.update(value => !value)
-}
+const bills = [{
+    id_gasto: 0,
+    id_categoria_gasto: 0,
+    categoria: '',
+    fecha: '',
+    detalle: '',
+    importe: 0,
+}]
 
-export let setUpdateCategoryBills = () => {
-    updateCategoryBills.update(value => !value)
-}
-
-export let updateBills = writable(false)
-export let updateCategoryBills = writable(false)
+export let storeBills = writable(bills);

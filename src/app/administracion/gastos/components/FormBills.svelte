@@ -8,13 +8,14 @@
     import { billValidator } from "../validators";
     import { createBill, editBill, getOneBill, parseBillData } from "../helpers";
     import type { DataBillToCreateEdit } from "../interfaces";
-  import { setUpdateBills } from "../store";
+  import FormCategory from "./FormCategory.svelte";
 
     export let id: number = 0;
     export let isEdit: boolean = false;
 
     let isLoading: boolean = false;
     let formCategory: boolean = false;
+    let updateCategories: boolean = false;
 
     const dispatch = createEventDispatcher();
 
@@ -25,17 +26,25 @@
             const dataBill: DataBillToCreateEdit = parseBillData(data)
             if(isEdit){
                 editBill(id, dataBill).then(() => {
-                    setUpdateBills()
+                    dispatch('getbills');
                     dispatch('closeform', {id: 0})
                 })
             } else {
                 createBill(dataBill).then(() => {
-                    setUpdateBills()
+                    dispatch('getbills');
                     dispatch('closeform')
                 })
             }
         }
     })
+
+    const openCloseFormCategory = () => {
+        formCategory = formCategory ? false : true; 
+    }
+
+    const setUpdateCategories = () => {
+        updateCategories = !updateCategories;
+    }
 
     onMount(() => {
         if(isEdit){
@@ -62,8 +71,8 @@
                 <div class="form-inputs">
                     <InputLetra id="inputDetalleGasto" label="Detalle" bind:value={$form.detalle} error={$errors.detalle ? true : false}/>
                     <div class="flex items-end gap-x-[5px]">
-                        <SelectCategoryBills id="cboCategoriaGasto" label="Categoria" bind:value={$form.categoria} route={gral_routes.get_categories_bills} error={$errors.categoria ? true : false}/>
-                        <button type="button" class="flex justify-center items-center bg-[var(--dark-blue)] text-[#fff] text-[18px] w-[40px] h-[35px] rounded-[10px] cursor-pointer hover:bg-[var(--regular-blue)] active:bg-[var(--dark-blue)]" title="Agregar categoría">+</button>
+                        <SelectCategoryBills id="cboCategoriaGasto" label="Categoria" bind:value={$form.categoria} route={gral_routes.get_categories_bills} error={$errors.categoria ? true : false} updateCategories={updateCategories}/>
+                        <button on:click={openCloseFormCategory} type="button" class="flex justify-center items-center bg-[var(--dark-blue)] text-[#fff] text-[18px] w-[40px] h-[35px] rounded-[10px] cursor-pointer hover:bg-[var(--regular-blue)] active:bg-[var(--dark-blue)]" title="Agregar categoría">+</button>
                     </div>
                     <InputFecha id='inputFecha' label="Fecha" bind:value={$form.fecha} error={$errors.fecha ? true : false}/>
                     <InputMoneda id="inputPrecio" label="Precio" bind:value={$form.importe} error={$errors.importe ? true : false}/>
@@ -81,6 +90,10 @@
         </form>
     </div>
 </div>
+
+{#if formCategory}
+    <FormCategory on:getcategories={setUpdateCategories} on:closeform={openCloseFormCategory} />
+{/if}
 
 <style>
     .background-form{
