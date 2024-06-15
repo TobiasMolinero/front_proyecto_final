@@ -32,7 +32,7 @@
             <div class="content-hero">
                 <div class="flex items-center gap-[20px]">
                     <img class="image w-[180px] h-[180px]" src={logo} alt="imagen">
-                    <h1 class="text-white text-[40px] font-[600]">ToolManagement</h1>
+                    <h1 class="text-white text-[40px] font-[600]">SalePoint</h1>
                 </div>
                 <div class="mt-[20px]">
                     <h2 class="text-white text-[30px]">Sistema de gestión para negocios</h2>

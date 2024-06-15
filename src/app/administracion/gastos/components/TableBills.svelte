@@ -5,12 +5,13 @@
     import { ButtonTable, Loader } from '@lib';
     import { question } from '@utils-alerts';
     import type { EventButtonEdit } from '@utils-interfaces';
-    import { storeBills } from '../store';
+    import { storeBills, totalByMonth } from '../store';
     import FormBills from './FormBills.svelte';
-    import { deleteBill } from '../helpers';
+    import { calculateTotalByMonth, deleteBill, filterBillsByMonth } from '../helpers';
     import type { Bill } from '../interfaces';
     
     export let updateBills: boolean;
+    export let valueMonth: string;
 
     let previousUpdateValue: boolean;
     let isLoading: boolean = true;
@@ -60,6 +61,11 @@
             previousUpdateValue = updateBills;
         }
     })
+
+    $: {
+        bills = filterBillsByMonth(valueMonth, $storeBills); 
+        $totalByMonth = calculateTotalByMonth(bills); 
+    }
 </script>
 
 <div class="section-table">

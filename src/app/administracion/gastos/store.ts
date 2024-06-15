@@ -10,3 +10,5 @@ const bills = [{
 }]
 
 export let storeBills = writable(bills);
+
+export let totalByMonth = writable('0,00');
