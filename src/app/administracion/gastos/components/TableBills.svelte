@@ -154,6 +154,10 @@
     tbody tr td{
         padding: 15px
     }
+    
+    tbody tr:hover{
+        background: rgb(240, 240, 240);
+    }
 
     .actions{
         display: flex;

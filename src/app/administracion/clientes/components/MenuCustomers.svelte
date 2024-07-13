@@ -11,7 +11,7 @@
 
 <div class="menu">
     <div class="container-search">
-        <Searcher placeholder="Ingrese un nombre" on:sendvalue />
+        <Searcher placeholder="Buscar por nombre" on:sendvalue />
     </div>
     <div class="container-button">
         <ButtonOpenModal text="Registrar nuevo cliente" on:openform={openCloseForm} />

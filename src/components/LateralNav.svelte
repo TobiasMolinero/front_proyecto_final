@@ -20,16 +20,16 @@
                     <p>Inicio</p>
                 </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a href="/#/Administracion/Pedidos">
                     <img src={iconOrders} alt="pedidos">
                     <p>Pedidos</p>
                 </a>
-            </li>
+            </li> -->
             <li class="nav-item">
                 <a href="/#/Administracion/Ventas">
                     <img src={iconSales} alt="Ventas">
-                    <p>Cobrar ventas</p>
+                    <p>Ventas</p>
                 </a>
             </li>
             <li class="nav-item">
@@ -90,6 +90,7 @@
         flex: 1;
         scrollbar-width: thin;
         scrollbar-color: transparent transparent;
+        height: calc(100vh - 10px);
     }
 
     .nav-list{
@@ -104,6 +105,7 @@
     }
     .nav-item:hover{
         background: var(--light-blue);
+        box-shadow: 0 0 6px rgba(7, 7, 7, 0.8);
     }
     
     .nav-item a{
@@ -118,7 +120,7 @@
     .nav-item p{
         color: aliceblue;
         font-weight: 500;
-        font-size: 16px;
+        font-size: 15px;
     }
 
     .nav-item img{

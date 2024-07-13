@@ -6,7 +6,7 @@
     import { question } from '@utils-alerts';
     import { updateUsers } from '../store';
     import { admin_routes } from '@routes';
-    import type { EventButtonEdit } from '../interfaces';
+    import type { EventButtonEdit } from '@utils-interfaces';
 
     let users: any;
     let isLoading: boolean = true;
@@ -146,6 +146,10 @@
 
     tbody tr td{
         padding: 15px
+    }
+
+    tbody tr:hover{
+        background: rgb(240, 240, 240);
     }
 
     .actions{
