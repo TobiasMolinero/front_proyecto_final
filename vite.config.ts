@@ -8,8 +8,8 @@ export default defineConfig({
     alias: {
       '@lib': '/src/lib/modul.ts',
       '@lib-store': '/src/lib/store.ts',
-      '@controlers': '/src/shared/imports/controlers.ts',
-      '@validate': '/src/shared/imports/validate.ts',
+      '@controlers': '/src/app-config/shared/imports/controlers.ts',
+      '@validate': '/src/app-config/shared/imports/validate.ts',
       '@store': '/src/app-config/base/store.ts',
       '@utils-alerts': '/src/utils/alerts.ts',
       '@utils-interfaces': '/src/utils/interfaces.ts',

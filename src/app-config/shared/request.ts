@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { instance } from '../app-config/helpers/instancesRequest';
+import { instance } from '../helpers/instancesRequest';
 
 export let http = {
     get: axios.get,
