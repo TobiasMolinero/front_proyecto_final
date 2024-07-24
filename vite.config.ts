@@ -14,7 +14,7 @@ export default defineConfig({
       '@utils-alerts': '/src/utils/alerts.ts',
       '@utils-interfaces': '/src/utils/interfaces.ts',
       '@utils-helpers': '/src/utils/helpers.ts',
-      '@routes': '/src/constants/api_routes.ts',
+      '@routes': '/src/utils/api_routes.ts',
     }
   }
 })
