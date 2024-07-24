@@ -135,12 +135,15 @@
 
     thead{
         background: var(--dark-blue);
-        color: white;
         height: 50px;
         position: sticky;
         top: 0;
         left: 0;
         z-index: 2;
+    }
+
+    thead th{
+        color: white;
     }
 
     tbody tr td{

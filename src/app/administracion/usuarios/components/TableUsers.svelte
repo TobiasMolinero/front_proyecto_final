@@ -136,7 +136,6 @@
 
     thead{
         background: var(--dark-blue);
-        color: white;
         height: 50px;
         position: sticky;
         top: 0;
@@ -144,12 +143,16 @@
         z-index: 2;
     }
 
+    thead th{
+        color: white;
+    }
+
     tbody tr td{
         padding: 15px
     }
 
     tbody tr:hover{
-        background: rgb(240, 240, 240);
+        background: rgb(241, 226, 226);
     }
 
     .actions{

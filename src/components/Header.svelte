@@ -33,13 +33,15 @@
     }
 </script>
 
+<svelte:body on:click={() => dropMenu = false} />
+
 <header class="header h-[10%]">
     <div class="flex items-center gap-[10px]">
         <img class="logo" src={logo} alt="">
         <p class="text-white font-[500]">ToolManagement</p>
     </div>
     <span>
-        <button on:click={showHiddenDropdownMenu}>
+        <button on:click|stopPropagation={showHiddenDropdownMenu}>
             {user}
             <img src={IconUser} alt="icono usuario">
         </button>
