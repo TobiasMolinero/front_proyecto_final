@@ -6,5 +6,5 @@ export const billSchema = {
 }
 
 export const categoryBillSchema = {
-    descripcion: ''
+    categoria: ''
 }

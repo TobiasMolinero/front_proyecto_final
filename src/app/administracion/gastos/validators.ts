@@ -8,5 +8,5 @@ export const billValidator = v.obj({
 })
 
 export const categoryBillValidator = v.obj({
-    descripcion: v.str().required()
+    categoria: v.str().required()
 })

@@ -20,7 +20,7 @@
         validationSchema: categoryProductValidator,
         onSubmit: data => {
             if(isEdit){
-                console.log(data)
+                
             } else {
                 console.log(data)
                 http.post(gral_routes.create_category_product, data)
@@ -49,11 +49,11 @@
                 <Loader />
             {:else}                
                 <div class="form-inputs">
-                    <InputLetra id="inputNombreCategoria" label="Nombre Categoria" bind:value={$form.descripcion} error={$errors.descripcion ? true : false}/>
+                    <InputLetra id="inputNombreCategoria" label="Nombre Categoria" bind:value={$form.categoria_producto} error={$errors.categoria_producto ? true : false}/>
                 </div>
             {/if}
             <div class="form-footer">
-                {#if $errors.descripcion } 
+                {#if $errors.categoria_producto } 
                   <p>Debe completar todos los campos obligatorios.</p>
                 {/if}
                 <div class="form-buttons">

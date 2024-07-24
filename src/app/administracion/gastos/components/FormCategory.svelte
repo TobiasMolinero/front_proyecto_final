@@ -27,10 +27,10 @@
         <h2>Crear categoria</h2>
         <form on:submit|preventDefault={handleSubmit} class="form">
             <div class="form-inputs">
-                <InputLetra id="txtNombreCategoria" label="Nombre categoria" bind:value={$form.descripcion} error={$errors.descripcion ? true : false} />
+                <InputLetra id="txtNombreCategoria" label="Nombre categoria" bind:value={$form.categoria} error={$errors.categoria ? true : false} />
             </div>
             <div class="form-footer">
-                {#if $errors.descripcion} 
+                {#if $errors.categoria} 
                   <p>Debe completar todos los campos obligatorios.</p>
                 {/if}
                 <div class="form-buttons">
