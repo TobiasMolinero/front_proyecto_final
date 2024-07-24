@@ -3,5 +3,5 @@
 </script>
 
 <div class="flex flex-col h-[100%]">
-    <h2 class="font-[600] text-[25px] text-center p-[10px]">Ventas</h2>
+    <h2 class="font-[700] text-[24px] text-start pt-[20px] px-[20px]">Ventas</h2>
 </div>

@@ -29,13 +29,13 @@
 </script>
 
 <div class="flex flex-col h-[100%]">
-    <h2 class="font-[600] text-[25px] text-center p-[10px]">Gestión de gastos</h2>
+    <h2 class="font-[700] text-[24px] text-start pt-[20px] px-[20px]">Gestión de gastos</h2>
     <MenuBills actualMonth={actualMonth} on:getbills={setUpdateBills} on:sendmonth={updateMonth} />
     <div class="flex">
         <TableBills updateBills={updateBills} valueMonth={actualMonth}/>
-        <div class="h-[150px] w-[30%] m-[20px_0] ps-[40px] flex flex-col justify-center border border-dashed border-slate-900">
+        <div class="h-[150px] w-[30%] mt-[10px] ps-[40px] flex flex-col justify-center border border-dashed border-slate-900">
             <h2 class="font-[700] text-[25px]">Total {monthName}</h2>
-            <span class="font-[800] text-[40px] text-red-600">{$totalByMonth}</span>
+            <span class="font-[800] text-[40px] text-red-500">{$totalByMonth}</span>
         </div>
     </div>
 </div>

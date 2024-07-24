@@ -17,7 +17,7 @@
     }
 </script>
 
-<div class="flex justify-between p-[10px_20px]">
+<div class="flex justify-between p-[10px_20px] mt-[5px]">
     <div class="w-[200px] flex items-center gap-x-[10px]">
         <span class="font-[600]">Mes:</span>
         <select id="" value={actualMonth} on:input={sendMonthValue} class="w-full h-full p-[2px] border-[2px] border-[var(--dark-blue)] rounded-[20px] text-center cursor-pointer">

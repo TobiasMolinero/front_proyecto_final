@@ -35,18 +35,18 @@
 
 <svelte:body on:click={() => dropMenu = false} />
 
-<header class="header h-[10%]">
+<header class="header bg-slate-800 h-[60px]">
     <div class="flex items-center gap-[10px]">
         <img class="logo" src={logo} alt="">
-        <p class="text-white font-[500]">ToolManagement</p>
+        <p class="text-white font-[500]">ToolsManagement</p>
     </div>
-    <span>
+    <span class="relative flex justify-end w-[400px]">
         <button on:click|stopPropagation={showHiddenDropdownMenu}>
             {user}
             <img src={IconUser} alt="icono usuario">
         </button>
         {#if dropMenu}
-            <div transition:fade={{duration: 150}} class="dropdown-menu">
+            <div transition:fade={{duration: 150}} class="dropdown-menu absolute top-[65px] bg-slate-800">
                 <ul class="menu">
                     <li class="menu-item">
                         <a class="item-link" href="/#/Administracion/MiPerfil" on:click={showHiddenDropdownMenu}>
@@ -71,9 +71,6 @@
 <style>
     .header{
         padding: 0 20px;
-        background: var(--light-blue);
-        background: grey;
-        box-shadow: 0 0 10px #00000080;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -109,13 +106,11 @@
     }
 
     .dropdown-menu{
-        position: absolute;
+        /* position: absolute;
         top: 65px;
-        left: -90px;
+        left: -90px; */
         width: 220px;
         padding: 15px 20px;
-        background: var(--dark-blue);
-        box-shadow: 0 0 6px #00000050;
         border-radius: 5px;
         transform: translateY(0);
     }

@@ -68,11 +68,11 @@
     }
 </script>
 
-<div class="section-table">
-    <div class="container-table">
-        <table>
-            <thead>
-                <tr>
+<div class="grow mt-[10px]">
+    <div class="container-table max-w-[100%] max-h-[385px] border-t-2 border-slate-800 grid place-start overflow-y-auto">
+        <table class="relative border-collapse text-center w-full">
+            <thead class="sticky top-0 bg-white shadow-[-4px_1px_1px_1px_#0f172a] z-[2]">
+                <tr class="*:p-[10px_20px] *pb-[50px] *:text-neutral-700">
                     <th>Fecha</th>
                     <th>Detalle</th>
                     <th>Categoría</th>
@@ -80,28 +80,28 @@
                     <th>Acciones</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="divide-y">
                 {#if isLoading}
                     <tr>
-                        <td colspan="7">
+                        <td colspan="7" class="p-[15px]">
                             <Loader />
                         </td>
                     </tr>
                 {:else if bills}
                     {#each bills as bill}
-                        <tr>
+                        <tr class="*:p-[10px] hover:bg-neutral-200">
                             <td>{bill.fecha.substring(0, 10)}</td>
                             <td>{bill.detalle}</td>
                             <td>{bill.categoria}</td>
                             <td>$ {bill.importe}</td>
-                            <td class="actions">
+                            <td class="flex justify-center items-center gap-x-[5px]">
                                 <ButtonTable id={bill.id_gasto} title='Editar gasto' className="edit" on:openform={openCloseForm}/> 
                                 <ButtonTable id={bill.id_gasto} title='Eliminar gasto' className="delete" on:delete={() => selectBill(bill.id_gasto)}/> 
                             </td>
                         </tr>
                     {:else}
                         <tr>
-                            <td colspan="6">
+                            <td colspan="6" class="p-[15px] font-[600] text-[24px]">
                                 <h3>No se encontraron resultados</h3>
                             </td>
                         </tr>
@@ -118,54 +118,8 @@
 
 
 <style>
-    .section-table{
-        flex: 1;
-        padding: 20px;
-    }
-
     .container-table{
-        max-width: 100%;
-        max-height: 385px;
-        display: grid;
-        place-items: start;
-        overflow-y: auto;
         scrollbar-width: thin;
         scrollbar-color: var(--dark-blue) transparent;
-        border: 1px solid var(--dark-blue);
-    }
-
-    table{
-        background: white;
-        text-align: center;
-        border-collapse: collapse;
-        width: 100%;
-    }
-
-    thead{
-        background: var(--dark-blue);
-        height: 50px;
-        position: sticky;
-        top: 0;
-        left: 0;
-        z-index: 2;
-    }
-
-    thead th{
-        color: white;
-    }
-
-    tbody tr td{
-        padding: 15px
-    }
-    
-    tbody tr:hover{
-        background: rgb(240, 240, 240);
-    }
-
-    .actions{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 5px;
     }
 </style>

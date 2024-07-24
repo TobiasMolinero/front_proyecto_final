@@ -12,7 +12,7 @@
 </script>
 
 <div class="flex flex-col h-full">
-    <h2 class="font-[600] text-[25px] text-center p-[10px]">Seguimiento de clientes</h2>
+    <h2 class="font-[700] text-[24px] text-start pt-[20px] px-[20px]">Seguimiento de clientes</h2>
     <MenuCustomers on:sendvalue={getValueFilter} />
     <TableCustomers {valueFilter} />
 </div>

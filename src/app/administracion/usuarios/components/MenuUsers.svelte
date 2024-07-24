@@ -10,7 +10,7 @@
     
 </script>
 
-<div class="menu-users">
+<div class="menu-users mt-[5px]">
     <div class="container-button">
         <ButtonOpenModal text="Crear Usuario" on:openform={openCloseForm}/>
     </div>

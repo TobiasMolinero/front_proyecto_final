@@ -10,7 +10,7 @@
     }
 </script>
 
-<div class="flex justify-between p-[10px_20px]">
+<div class="flex justify-between p-[10px_20px] mt-[5px]">
     <div class="flex w-[300px] h-[45px]">
         <Searcher placeholder="Buscar por codigo o nombre" on:sendvalue />
     </div>

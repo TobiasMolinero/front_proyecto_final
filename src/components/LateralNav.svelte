@@ -1,7 +1,7 @@
 <script>
     import iconHome from '../assets/iconos/inicio.svg';
     import iconSales from '../assets/iconos/ventas.svg';
-    import iconOrders from '../assets/iconos/pedidos.svg';
+    // import iconOrders from '../assets/iconos/pedidos.svg';
     import iconBills from '../assets/iconos/gastos.svg';
     import iconClientes from '../assets/iconos/clientes.svg';
     import iconProduct from '../assets/iconos/barcode.svg';
@@ -11,10 +11,10 @@
     import { loginStore } from '@store';
 </script>
 
-<aside class="lateral-nav">
+<aside class="lateral-nav bg-slate-900">
     <nav class="nav">
         <ul class="nav-list">
-            <li class="nav-item ">
+            <li class="nav-item hover:shadow hover:bg-blue-950">
                 <a href="/#/Administracion/Inicio">
                     <img src={iconHome} alt="Gestión de usuarios">
                     <p>Inicio</p>
@@ -26,44 +26,44 @@
                     <p>Pedidos</p>
                 </a>
             </li> -->
-            <li class="nav-item">
+            <li class="nav-item hover:shadow hover:bg-blue-950">
                 <a href="/#/Administracion/Ventas">
                     <img src={iconSales} alt="Ventas">
                     <p>Ventas</p>
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item hover:shadow hover:bg-blue-950">
                 <a href="/#/Administracion/Clientes">
                     <img src={iconClientes} alt="clientes">
                     <p>Clientes</p>
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item hover:shadow hover:bg-blue-950">
                 <a href="/#/Administracion/Gastos">
                     <img src={iconBills} alt="Gastos">
                     <p>Gastos</p>
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item hover:shadow hover:bg-blue-950">
                 <a href="/#/Administracion/Productos">
                     <img src={iconProduct} alt="productos">
                     <p>Productos</p>
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item hover:shadow hover:bg-blue-950">
                 <a href="/#/Administracion/Inventario">
                     <img src={iconInventory} alt="inventario">
                     <p>Inventario</p>
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item hover:shadow hover:bg-blue-950">
                 <a href="/#/Administracion/Configuracion">
                     <img src={iconConfig} alt="Configuracion">
                     <p>Configuración</p>
                 </a>
             </li>
             {#if $loginStore.rol === 'admin'}
-                <li class="nav-item">
+                <li class="nav-item hover:shadow hover:bg-blue-950">
                     <a href="/#/Administracion/Usuarios">
                         <img src={userManagement} alt="Gestión de usuarios">
                         <p>Gestionar usuarios</p>
@@ -81,7 +81,6 @@
         width: 220px;
         padding: 5px 10px;
         height: 100%;
-        background: var(--dark-blue);
     }
 
     .nav{
@@ -102,10 +101,6 @@
     .nav-item{
         border-radius: 5px;
         cursor: pointer;
-    }
-    .nav-item:hover{
-        background: var(--light-blue);
-        box-shadow: 0 0 6px rgba(7, 7, 7, 0.8);
     }
     
     .nav-item a{

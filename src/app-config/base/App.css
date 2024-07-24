@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root{
-    --dark-blue: #001d79;
-    --regular-blue: #1a4791;
+    --dark-blue: rgb(23 37 84);
+    --regular-blue: rgb(26, 71, 145);
     --light-blue: #17a2da;
     --sky-blue: #77c1e4;
 

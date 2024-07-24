@@ -9,7 +9,7 @@
     }
 </script>
 
-<div class="menu">
+<div class="menu mt-[5px]">
     <div class="container-search">
         <Searcher placeholder="Buscar por nombre" on:sendvalue />
     </div>

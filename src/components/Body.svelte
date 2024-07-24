@@ -10,7 +10,7 @@
     })
 </script>
 
-<div class="h-[90%] flex overflow-auto">
+<div class="h-[100%] flex">
     <LateralNav />
     <Routes />
 </div>

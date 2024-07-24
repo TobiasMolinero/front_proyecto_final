@@ -59,11 +59,11 @@
 
 </script>
 
-<div class="section-table">
-    <div class="container-table">
-        <table>
-            <thead>
-                <tr>
+<div class="grow mt-[10px]">
+    <div class="container-table max-w-[100%] max-h-[385px] border-t-2 border-slate-800 grid place-start overflow-y-auto">
+        <table class="relative border-collapse text-center w-full">
+            <thead class="sticky top-0 bg-white shadow-[-4px_1px_1px_1px_#0f172a] z-[2]">
+                <tr class="*:p-[10px_20px] *pb-[50px] *:text-neutral-700">
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Razon social</th>
@@ -73,30 +73,30 @@
                     <th>Acciones</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="divide-y">
                 {#if isLoading}
                     <tr>
-                        <td colspan="7">
+                        <td colspan="7" class="p-[15px]">
                             <Loader />
                         </td>
                     </tr>
                 {:else if customers} 
                         {#each copyCustomers as customer}
-                            <tr>
+                            <tr class="*:p-[10px] hover:bg-neutral-200">
                                 <td>{customer.nombre}</td>
                                 <td>{customer.apellido}</td>
                                 <td>{customer.razon_social || '-'}</td>
                                 <td>{customer.domicilio}</td>
                                 <td>{customer.correo}</td>
                                 <td>{customer.telefono}</td>
-                                <td class="actions">
+                                <td class="flex justify-center items-center gap-x-[5px]">
                                     <ButtonTable className="edit" title="Editar usuario" id={customer.id_cliente} on:openform={openCloseForm}/>
                                     <ButtonTable className="delete" title="Eliminar usuario" id={customer.id_cliente} on:delete={() => selectCustomer(customer.id_cliente)}/>
                                 </td>
                             </tr>
                         {:else}
                             <tr>
-                                <td colspan="7">
+                                <td colspan="7" class="p-[15px] font-[600] text-[24px]">
                                     <h3>No se encontraron resultados</h3>
                                 </td>
                             </tr>
@@ -112,54 +112,8 @@
 {/if}
 
 <style>
-    .section-table{
-        flex: 1;
-        padding: 20px;
-    }
-    
     .container-table{
-        max-width: 100%;
-        max-height: 385px;
-        display: grid;
-        place-items: start;
-        overflow-y: auto;
         scrollbar-width: thin;
         scrollbar-color: var(--dark-blue) transparent;
-        border: 1px solid var(--dark-blue);
-    }
-    
-    table{
-        background: white;
-        text-align: center;
-        border-collapse: collapse;
-        width: 100%;
-    }
-    
-    thead{
-        background: var(--dark-blue);
-        height: 50px;
-        position: sticky;
-        top: 0;
-        left: 0;
-        z-index: 2;
-    }
-
-    thead th{
-        color: white;
-    }
-    
-    tbody tr td{
-        padding: 15px
-    }
-
-    tbody tr:hover{
-        background: rgb(240, 240, 240);
-    }
-
-    .actions{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 5px;
     }
 </style>

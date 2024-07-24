@@ -11,6 +11,7 @@ import SelectRol from "./selects/SelectRol.svelte";
 import SelectCategoryProduct from "./selects/SelectCategoryProduct.svelte";
 import SelectCategoryBills from "./selects/SelectCategoryBills.svelte";
 import Loader from "./loaders/Loader.svelte";
+import IconNavigator from "./icons/IconNavigator.svelte";
 
 export {
     InputLibre,
@@ -25,5 +26,6 @@ export {
     SelectRol,
     SelectCategoryProduct,
     SelectCategoryBills,
-    Loader
+    Loader,
+    IconNavigator
 }
