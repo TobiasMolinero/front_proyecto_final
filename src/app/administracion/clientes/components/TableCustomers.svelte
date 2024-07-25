@@ -4,16 +4,16 @@
     import { http } from '@controlers';
     import { gral_routes } from "@routes";
     import { question } from "@utils-alerts"; 
-    import { updateCustomers } from "../store";
+    import { updateCustomers, storeCustomer } from "../store";
     import { deleteCustomer, filterCustomers } from "../helpers";
     import type { EventButtonEdit } from "@utils-interfaces";
-    import type { Customers } from "../interfaces";
+    import type { Customer } from "../interfaces";
     import FormCustomer from "./FormCustomer.svelte";
     
     export let valueFilter: string = '';
 
-    let customers: Customers[];
-    let copyCustomers: Customers[];
+    let customers: Customer[];
+    let copyCustomers: Customer[];
     let isLoading: boolean = true;
     let form: boolean = false;
     let id_customer: number;
@@ -26,6 +26,7 @@
     const getCustomers = () => {
         http.get(gral_routes.all_customers).then(response => {
             customers = response.data;
+            $storeCustomer = customers
             isLoading = false;
         })
     }
@@ -44,7 +45,11 @@
     }
 
     onMount(() => {
-        getCustomers();
+        if($storeCustomer.length === 0){
+            getCustomers();
+        } else {
+            customers = $storeCustomer
+        }
     })
 
     updateCustomers.subscribe(() => {
@@ -66,6 +71,7 @@
                 <tr class="*:p-[10px_20px] *pb-[50px] *:text-neutral-700">
                     <th>Nombre</th>
                     <th>Apellido</th>
+                    <th>Nro. Documento</th>
                     <th>Razon social</th>
                     <th>Dirección</th>
                     <th>Correo</th>
@@ -84,11 +90,12 @@
                         {#each copyCustomers as customer}
                             <tr class="*:p-[10px] hover:bg-neutral-200">
                                 <td>{customer.nombre}</td>
-                                <td>{customer.apellido}</td>
+                                <td>{customer.apellido || '-'}</td>
+                                <td>{customer.nro_documento || '-'}</td>
                                 <td>{customer.razon_social || '-'}</td>
-                                <td>{customer.domicilio}</td>
-                                <td>{customer.correo}</td>
-                                <td>{customer.telefono}</td>
+                                <td>{customer.domicilio || '-'}</td>
+                                <td>{customer.correo || '-'}</td>
+                                <td>{customer.telefono || '-'}</td>
                                 <td class="flex justify-center items-center gap-x-[5px]">
                                     <ButtonTable className="edit" title="Editar usuario" id={customer.id_cliente} on:openform={openCloseForm}/>
                                     <ButtonTable className="delete" title="Eliminar usuario" id={customer.id_cliente} on:delete={() => selectCustomer(customer.id_cliente)}/>

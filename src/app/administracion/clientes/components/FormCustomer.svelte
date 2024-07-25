@@ -40,7 +40,7 @@
             http.get(`${gral_routes.one_customer + id}`).then(response => {
                 $form.nombre = response.data[0].nombre;
                 $form.apellido = response.data[0].apellido;
-                $form.nro_documento = String(response.data[0].nro_documento);
+                $form.nro_documento = response.data[0].nro_documento;
                 $form.razon_social = response.data[0].razon_social;
                 $form.domicilio = response.data[0].domicilio;
                 $form.correo = response.data[0].correo;

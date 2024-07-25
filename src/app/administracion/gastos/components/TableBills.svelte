@@ -47,10 +47,9 @@
 
     onMount(() => {
         previousUpdateValue = updateBills;
-        if($storeBills[0].id_gasto === 0){
+        if($storeBills.length === 0){
             getBills();
         } else {
-            bills = $storeBills;
             isLoading = false;
         }
     })
@@ -87,8 +86,8 @@
                             <Loader />
                         </td>
                     </tr>
-                {:else if bills}
-                    {#each bills as bill}
+                {:else if $storeBills}
+                    {#each $storeBills as bill}
                         <tr class="*:p-[10px] hover:bg-neutral-200">
                             <td>{bill.fecha.substring(0, 10)}</td>
                             <td>{bill.detalle}</td>

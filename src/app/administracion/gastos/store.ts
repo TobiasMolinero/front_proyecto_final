@@ -1,14 +1,7 @@
 import { writable } from 'svelte/store';
+import type { Bill } from './interfaces';
 
-const bills = [{
-    id_gasto: 0,
-    id_categoria_gasto: 0,
-    categoria: '',
-    fecha: '',
-    detalle: '',
-    importe: 0,
-}]
 
-export let storeBills = writable(bills);
+export let storeBills = writable<Bill[]>([]);
 
 export let totalByMonth = writable('0,00');
