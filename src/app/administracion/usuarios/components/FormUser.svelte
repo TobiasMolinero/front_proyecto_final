@@ -21,7 +21,7 @@
         validationSchema: isEdit ? userEditValidator : userValidator,
         onSubmit: data => {
             const datosUsuario = parsearDatosUsuario(data);
-            console.log(datosUsuario)
+
             if(isEdit){
                 http.put(`${admin_routes.edit_user + id}`, datosUsuario)
                 .then(() => {

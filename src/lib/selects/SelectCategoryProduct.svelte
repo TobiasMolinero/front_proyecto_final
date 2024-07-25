@@ -22,7 +22,7 @@
     })
     
     onMount(() => {
-        if($listCategoryProduct[0].id_categoria_producto === 0){
+        if($listCategoryProduct.length === 0){
             getOptions();
         } else {
             return null;
@@ -34,7 +34,7 @@
     <label for={id} class={`${error ? 'text-[red]' : ''}`}>{label}</label>
     <select id={id} bind:value class={`w-full h-[35px] rounded-[10px] border p-[0_10px] cursor-pointer ${error ? 'border-[red] focus-visible:outline-none' : 'border-[#00000050] focus-visible:outline-[1px_solid_var(--dark-blue)]'}`}>
         {#each $listCategoryProduct as option}
-            <option value={`${option.id_categoria_producto}`}>{option.descripcion}</option>
+            <option value={`${option.id_categoria_producto}`}>{option.categoria_producto}</option>
         {/each}
     </select>
 </div>

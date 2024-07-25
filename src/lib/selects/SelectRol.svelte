@@ -16,7 +16,7 @@
     }
 
     onMount(() => {
-        if($listRolOptions[0].id_rol_usuario === 0){
+        if($listRolOptions.length === 0){
             getOptions();
         } else {
             return null;

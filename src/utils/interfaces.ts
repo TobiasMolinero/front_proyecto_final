@@ -11,12 +11,12 @@ export interface RolInterface {
 
 export interface CategoryProductInterface{
     id_categoria_producto: number
-    descripcion: string
+    categoria_producto: string
 }
 
 export interface CategoryBillInterface{
     id_categoria_gasto: number
-    descripcion: string
+    categoria: string
 }
 
 export interface EventSearcher {

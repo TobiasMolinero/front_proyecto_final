@@ -40,7 +40,7 @@
             http.get(`${gral_routes.one_customer + id}`).then(response => {
                 $form.nombre = response.data[0].nombre;
                 $form.apellido = response.data[0].apellido;
-                $form.nro_documento = response.data[0].nro_documento;
+                $form.nro_documento = String(response.data[0].nro_documento);
                 $form.razon_social = response.data[0].razon_social;
                 $form.domicilio = response.data[0].domicilio;
                 $form.correo = response.data[0].correo;
@@ -67,8 +67,8 @@
                 <div class="form-inputs">
                     <InputLetra id="inputNombre" label="Nombre*" bind:value={$form.nombre} error={$errors.nombre ? true : false} />
                     <InputLetra id="inputApellido" label="Apellido" bind:value={$form.apellido} error={$errors.apellido ? true : false} />
-                    <InputNumero id="inputNroDocumento" min={0} max={0} label="Nro. Documento" bind:value={$form.nro_documento} error={$errors.nro_documento ? true : false} />
-                    <InputLetra id="inputRazonSocial" label="Razón social(opcional)" bind:value={$form.razon_social} error={$errors.razon_social ? true : false} />
+                    <InputNumero id="inputNroDocumento" min={0} max={12} label="Nro. Documento" bind:value={$form.nro_documento} error={$errors.nro_documento ? true : false} />
+                    <InputLetra id="inputRazonSocial" label="Razón social" bind:value={$form.razon_social} error={$errors.razon_social ? true : false} />
                     <InputLibre id="inputDomicilio" label="Dirección" type="text" bind:value={$form.domicilio} error={$errors.domicilio ? true : false} />
                     <InputLibre id="inputCorreo" label="Correo" type="text" bind:value={$form.correo} error={$errors.correo ? true : false} />
                     <InputNumero id="inputTelefono" label="Telefono" min={10} max={10} bind:value={$form.telefono} error={$errors.telefono ? true : false} />
