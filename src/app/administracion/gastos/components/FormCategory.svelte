@@ -6,6 +6,7 @@
     import { categoryBillSchema } from "../schemas";
     import { categoryBillValidator } from "../validators";
     import { InputLetra, ButtonForm } from "@lib";
+    import { loading } from "@utils-alerts";
 
     const dispatch = createEventDispatcher();
 
@@ -13,6 +14,7 @@
         initialValues: categoryBillSchema,
         validationSchema: categoryBillValidator,
         onSubmit: data => {
+            loading.fire()
             http.post(gral_routes.create_category_bills, data).then(() => {
                 dispatch('closeform')
                 dispatch('getcategories');
@@ -59,7 +61,7 @@
         display: flex;
         flex-direction: column;
         gap: 20px;
-        background: rgb(230, 223, 223);
+        background: #e6dfdf;
         width: 350px;
         height: fit-content;
         border-radius: 10px;

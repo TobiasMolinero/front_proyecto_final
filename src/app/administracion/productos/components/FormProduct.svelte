@@ -10,6 +10,7 @@
     import type { DataProductToCreateEdit } from '../interfaces';
     import { setUpdateProducts } from '../store';
     import FormCategoryProduct from './FormCategoryProduct.svelte';
+    import { loading } from '@utils-alerts';
 
     export let id: number = 0;
     export let isEdit: boolean;
@@ -24,6 +25,7 @@
         validationSchema: productValidator,
         onSubmit: (data) => {
             const dataProduct: DataProductToCreateEdit = parseProductData(data)
+            loading.fire()
             if(isEdit){
                 editProduct(id, dataProduct).then(() => {
                     setUpdateProducts();

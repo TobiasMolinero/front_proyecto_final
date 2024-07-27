@@ -8,7 +8,8 @@
     import { billValidator } from "../validators";
     import { createBill, editBill, getOneBill, parseBillData } from "../helpers";
     import type { DataBillToCreateEdit } from "../interfaces";
-  import FormCategory from "./FormCategory.svelte";
+    import FormCategory from "./FormCategory.svelte";
+  import { loading } from "@utils-alerts";
 
     export let id: number = 0;
     export let isEdit: boolean = false;
@@ -24,6 +25,7 @@
         validationSchema: billValidator,
         onSubmit: data => {
             const dataBill: DataBillToCreateEdit = parseBillData(data)
+            loading.fire()
             if(isEdit){
                 editBill(id, dataBill).then(() => {
                     dispatch('getbills');

@@ -3,7 +3,7 @@
     import { Loader, ButtonTable } from "@lib"; 
     import { http } from '@controlers';
     import { gral_routes } from "@routes";
-    import { question } from "@utils-alerts"; 
+    import { loading, warning } from "@utils-alerts"; 
     import { updateCustomers, storeCustomer } from "../store";
     import { deleteCustomer, filterCustomers } from "../helpers";
     import type { EventButtonEdit } from "@utils-interfaces";
@@ -32,11 +32,12 @@
     }
 
     const selectCustomer = (id: number) => {  
-        question.fire({
-            text: '¿Seguro que desea dar de baja este cliente? Esta acción es irreversible.'
+        warning.fire({
+            text: 'ATENCIÓN: ¿Seguro que desea dar de baja este cliente? Esta acción es irreversible.'
         })
         .then((response) => {
             if(response.isConfirmed){
+                loading.fire()
                 deleteCustomer(id).then(() => {
                     getCustomers();
                 })

@@ -9,6 +9,7 @@
     import { setUpdateCustomers } from '../store';
     import { createCustomer, editCustomer } from '../helpers';
     import type { DataCustomer } from '../interfaces';
+    import { loading } from '@utils-alerts';
 
     export let id: number = 0;
     export let isEdit: boolean = false;
@@ -21,6 +22,7 @@
         initialValues: customerSchema,
         validationSchema: customerValidator,
         onSubmit: (data: DataCustomer) => {
+            loading.fire()
             if(isEdit){
                 editCustomer(id, data).then(() => {
                     setUpdateCustomers();

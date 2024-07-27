@@ -7,6 +7,7 @@
     import { categoryProductSchema } from '../schemas';
     import { categoryProductValidator } from '../validators';
     import { setUpdateCategoryProduct } from '../store';
+    import { loading } from '@utils-alerts';
 
     export let id: number = 0;
     export let isEdit: boolean;
@@ -19,6 +20,7 @@
         initialValues: categoryProductSchema,
         validationSchema: categoryProductValidator,
         onSubmit: data => {
+            loading.fire()
             if(isEdit){
                 
             } else {

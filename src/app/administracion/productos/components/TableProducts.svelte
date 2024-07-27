@@ -3,7 +3,7 @@
     import { http } from '@controlers';
     import { gral_routes } from '@routes';
     import { ButtonTable, Loader } from '@lib';
-    import { question } from '@utils-alerts';
+    import { loading, warning } from '@utils-alerts';
     import type { EventButtonEdit } from '@utils-interfaces';
     import { updateProducts } from '../store';
     import FormProduct from './FormProduct.svelte';
@@ -31,11 +31,12 @@
     }
 
     const selectProduct = (id: number) => {  
-        question.fire({
-            text: '¿Seguro que desea dar de baja este producto? Esta acción es irreversible.'
+        warning.fire({
+            text: 'ATENCIÓN: ¿Seguro que desea dar de baja este producto? Esta acción es irreversible.'
         })
         .then((response) => {
             if(response.isConfirmed){
+                loading.fire()
                 deleteProduct(id).then(() => {
                     getProducts();
                 })

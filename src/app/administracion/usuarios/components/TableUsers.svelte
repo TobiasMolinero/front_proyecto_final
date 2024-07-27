@@ -3,7 +3,7 @@
     import FormUser from './FormUser.svelte';
     import FormPassword from './FormPassword.svelte';
     import { http } from '@controlers';
-    import { question } from '@utils-alerts';
+    import { loading, warning } from '@utils-alerts';
     import { updateUsers } from '../store';
     import { admin_routes } from '@routes';
     import type { EventButtonEdit } from '@utils-interfaces';
@@ -38,11 +38,12 @@
     })
 
     const deleteUser = (id: number, id_persona: number) => {
-        question.fire({
-            text: 'Seguro que desea dar de baja este usuario? Esta acción es irreversible.'
+        warning.fire({
+            text: 'ATENCIÓN: Seguro que desea dar de baja este usuario? Esta acción es irreversible.'
         })
         .then(results => {
             if(results.isConfirmed){
+                loading.fire()
                 http.put(`${admin_routes.delete_user + id}`, {id_persona})
                 .then(() => {
                     getUsers();

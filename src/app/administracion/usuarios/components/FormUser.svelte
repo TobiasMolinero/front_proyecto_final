@@ -8,6 +8,7 @@
     import { userValidator, userEditValidator } from '../validators/validators';
     import { setUpdateUsers } from '../store';
     import { admin_routes, gral_routes } from '@routes';
+    import { loading } from '@utils-alerts';
 
     export let id: number = 0;
     export let isEdit: boolean;
@@ -21,7 +22,7 @@
         validationSchema: isEdit ? userEditValidator : userValidator,
         onSubmit: data => {
             const datosUsuario = parsearDatosUsuario(data);
-
+            loading.fire()
             if(isEdit){
                 http.put(`${admin_routes.edit_user + id}`, datosUsuario)
                 .then(() => {

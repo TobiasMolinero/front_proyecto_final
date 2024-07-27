@@ -3,7 +3,7 @@
     import { http } from '@controlers';
     import { gral_routes } from '@routes';
     import { ButtonTable, Loader } from '@lib';
-    import { question } from '@utils-alerts';
+    import { loading, warning } from '@utils-alerts';
     import type { EventButtonEdit } from '@utils-interfaces';
     import { storeBills, totalByMonth } from '../store';
     import FormBills from './FormBills.svelte';
@@ -33,11 +33,12 @@
     }
 
     const selectBill = (id: number) => {  
-        question.fire({
-            text: '¿Seguro que desea dar de baja este registro? Esta acción es irreversible.'
+        warning.fire({
+            text: 'ATENCIÓN: ¿Seguro que desea dar de baja este registro? Esta acción es irreversible.'
         })
         .then((response) => {
             if(response.isConfirmed){
+                loading.fire()
                 deleteBill(id).then(() => {
                     getBills()
                 })
