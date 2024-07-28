@@ -3,7 +3,8 @@ export let productSchema = {
     nombre_producto: '',
     categoria: '',
     descripcion: '',
-    precio: ''
+    precio: '',
+    stock: ''
 }
 
 export let categoryProductSchema = {

@@ -46,9 +46,9 @@
             <img src={IconUser} alt="icono usuario">
         </button>
         {#if dropMenu}
-            <div transition:fade={{duration: 150}} class="dropdown-menu absolute top-[65px] bg-slate-800">
+            <div transition:fade={{duration: 150}} class="dropdown-menu absolute top-[65px] bg-slate-900">
                 <ul class="menu">
-                    <li class="menu-item">
+                    <li class="menu-item hover:bg-blue-950">
                         <a class="item-link" href="/#/Administracion/MiPerfil" on:click={showHiddenDropdownMenu}>
                             <img src={userIcon} alt="icono mi perfil">
                             Mi perfil
@@ -124,9 +124,6 @@
 
     .menu-item{
         border-radius: 5px;
-    }
-    .menu-item:hover{
-        background: var(--light-blue);
     }
 
     .item-link{

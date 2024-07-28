@@ -11,6 +11,7 @@
     import { setUpdateProducts } from '../store';
     import FormCategoryProduct from './FormCategoryProduct.svelte';
     import { loading } from '@utils-alerts';
+  import InputNumero from '../../../../lib/inputs/InputNumero.svelte';
 
     export let id: number = 0;
     export let isEdit: boolean;
@@ -76,6 +77,9 @@
                         <button on:click={openCloseFormCategory} type="button" class="flex justify-center items-center bg-[var(--dark-blue)] text-[#fff] text-[18px] w-[40px] h-[35px] rounded-[10px] cursor-pointer hover:bg-[var(--regular-blue)] active:bg-[var(--dark-blue)]" title="Agregar categoría">+</button>
                     </div>
                     <InputMoneda id="inputPrecio" label="Precio" bind:value={$form.precio} error={$errors.precio ? true : false}/>
+                    {#if !isEdit}
+                        <InputNumero label="Stock Inicial" id='inputStock' bind:value={$form.stock} error={$errors.stock ? true : false} min={0} max={4} />
+                    {/if}
                 </div>
             {/if}
             <div class="form-footer">

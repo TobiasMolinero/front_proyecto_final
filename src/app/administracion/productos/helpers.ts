@@ -14,6 +14,7 @@ export const parseProductData = (data: DataProduct) => {
     descripcion: data.descripcion,
     id_categoria_producto: Number(data.categoria),
     precio: parsearCosto(data.precio),
+    stock: Number(data.stock)
   };
 };
 

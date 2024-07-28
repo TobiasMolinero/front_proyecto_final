@@ -34,6 +34,7 @@ export const gral_routes = {
     one_product: '/productos/one/',
     all_products: '/productos/all',
     create_product: '/productos/create',
+    all_inventary: '/productos/inventario',
     
     //Categoria producto
     get_categories_products: '/productos/categorias',

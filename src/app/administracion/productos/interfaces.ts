@@ -4,6 +4,7 @@ export interface DataProduct{
     categoria: string
     descripcion: string
     precio: string
+    stock: string
 }
 
 export interface DataProductToCreateEdit{
@@ -12,6 +13,7 @@ export interface DataProductToCreateEdit{
     descripcion: string
     id_categoria_producto: number
     precio: number
+    stock: number
 }
 
 export interface Product{

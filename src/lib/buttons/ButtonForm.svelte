@@ -16,5 +16,5 @@
 {#if type === 'button'}
     <button type="button" class="font-[500] w-full h-[45px] rounded-[10px] border border-[var(--dark-blue)] bg-white text-[var(--text-black) cursor-pointer hover:bg-[#e0e0e0] active:bg-white"  on:click={closeForm}>{text}</button>
 {:else if type === "submit"}
-    <button type="submit" class="font-[500] w-full h-[45px] rounded-[10px] border border-[var(--dark-blue)] bg-[var(--dark-blue)] text-[#fff] cursor-pointer hover:bg-[var(--regular-blue)] active:bg-[var(--dark-blue)]">{text}</button>
+    <button type="submit" class="font-[500] w-full h-[45px] rounded-[10px] border border-slate-800 bg-slate-800 text-[#fff] cursor-pointer hover:bg-slate-600 active:bg-slate-700">{text}</button>
 {/if}

@@ -1,7 +1,6 @@
 <script>
     import iconHome from '../assets/iconos/inicio.svg';
     import iconSales from '../assets/iconos/ventas.svg';
-    // import iconOrders from '../assets/iconos/pedidos.svg';
     import iconBills from '../assets/iconos/gastos.svg';
     import iconClientes from '../assets/iconos/clientes.svg';
     import iconProduct from '../assets/iconos/barcode.svg';
@@ -20,12 +19,6 @@
                     <p>Inicio</p>
                 </a>
             </li>
-            <!-- <li class="nav-item">
-                <a href="/#/Administracion/Pedidos">
-                    <img src={iconOrders} alt="pedidos">
-                    <p>Pedidos</p>
-                </a>
-            </li> -->
             <li class="nav-item hover:shadow hover:bg-blue-950">
                 <a href="/#/Administracion/Ventas">
                     <img src={iconSales} alt="Ventas">

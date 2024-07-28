@@ -5,7 +5,8 @@ export let productValidator = v.obj({
     nombre_producto: v.str().required(),
     categoria: v.str().required(),
     descripcion: v.str(),
-    precio: v.str().required()
+    precio: v.str().required(),
+    stock: v.str().required()
 }) 
 
 export let categoryProductValidator = v.obj({

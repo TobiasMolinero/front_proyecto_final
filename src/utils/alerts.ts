@@ -33,8 +33,6 @@ export const success = Swal.mixin({
     timer: 2000,
     showConfirmButton: false,
     timerProgressBar: true,
-    focusConfirm: false,
-    focusCancel: false,
     customClass: {
         title: 'alert-title',
         htmlContainer: 'alert-text',
