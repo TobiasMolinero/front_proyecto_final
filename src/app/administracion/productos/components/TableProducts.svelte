@@ -9,6 +9,7 @@
     import FormProduct from './FormProduct.svelte';
     import { deleteProduct, filterProducts } from '../helpers';
     import type { Product } from '../interfaces';
+  import { getInventory } from '../../inventario/helpers';
     
     export let valueFilter: string = '';
 
@@ -39,6 +40,7 @@
                 loading.fire()
                 deleteProduct(id).then(() => {
                     getProducts();
+                    getInventory()
                 })
             }
         })

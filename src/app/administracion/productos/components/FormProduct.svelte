@@ -11,7 +11,8 @@
     import { setUpdateProducts } from '../store';
     import FormCategoryProduct from './FormCategoryProduct.svelte';
     import { loading } from '@utils-alerts';
-  import InputNumero from '../../../../lib/inputs/InputNumero.svelte';
+    import InputNumero from '../../../../lib/inputs/InputNumero.svelte';
+    import { getInventory } from '../../inventario/helpers';
 
     export let id: number = 0;
     export let isEdit: boolean;
@@ -35,6 +36,7 @@
             } else {
                 createProduct(dataProduct).then(() => {
                     setUpdateProducts();
+                    getInventory()
                     dispatch('closeform');
                 })
             }
