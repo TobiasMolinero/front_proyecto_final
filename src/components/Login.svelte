@@ -5,11 +5,13 @@
     import { loginSchema } from './schemas';
     import { loginValidator } from './validators';
     import { loginAction } from '@store';
+    import { loading } from '@utils-alerts';
 
     const {form, errors, handleSubmit} = createForm({
         initialValues: loginSchema,
         validationSchema: loginValidator,
         onSubmit: data => {
+            loading.fire()
             http.post("/usuarios/login", data)
             .then(results => {
                 const user: string = results.data.usuario;

@@ -22,3 +22,8 @@ export interface CategoryBillInterface{
 export interface EventSearcher {
     detail: {value: string}
 }
+
+export interface SelectProduct {
+    id_producto: number
+    nombre_producto: string
+}

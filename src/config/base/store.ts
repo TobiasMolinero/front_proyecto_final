@@ -1,4 +1,4 @@
-import { writable } from "svelte/store";
+import { get, writable } from "svelte/store";
 import { location, push } from 'svelte-spa-router'
 
 let login = {
@@ -26,13 +26,11 @@ export let loginAction = {
             return value;
         })
         
-        location.subscribe(value => {
-            if(value === '/'){
-                push('/Administracion/Inicio') 
-            } else {
-                push(value)
-            }
-        })
+        if(get(location) === '/'){
+            push('/Administracion/Inicio') 
+        } else {
+            push(get(location))
+        }
 
         localStorageLogin(userName, rol, id)
     },
