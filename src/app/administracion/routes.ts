@@ -10,6 +10,8 @@ const routes = {
     '/Gastos': wrap({ asyncComponent: () => import('./gastos/Modul.svelte') }),
     '/Inventario': wrap({ asyncComponent: () => import('./inventario/Modul.svelte')} ),
     '/MiPerfil': wrap({ asyncComponent: () => import('./mi-perfil/Modul.svelte') }),
+    '/Configuracion': wrap({ asyncComponent: () => import('./configuración/Modul.svelte') }),
+    '/RegistrarVenta': wrap({ asyncComponent: () => import('./crear-venta/Modul.svelte') }),
 };
 
 export default routes;

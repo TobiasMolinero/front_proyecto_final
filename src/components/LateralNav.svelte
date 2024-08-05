@@ -49,12 +49,6 @@
                     <p>Inventario</p>
                 </a>
             </li>
-            <li class="nav-item hover:shadow hover:bg-blue-950">
-                <a href="/#/Administracion/Configuracion">
-                    <img src={iconConfig} alt="Configuracion">
-                    <p>Configuración</p>
-                </a>
-            </li>
             {#if $loginStore.rol === 'admin'}
                 <li class="nav-item hover:shadow hover:bg-blue-950">
                     <a href="/#/Administracion/Usuarios">
@@ -63,6 +57,12 @@
                     </a>
                 </li>
             {/if}
+            <!-- <li class="nav-item hover:shadow hover:bg-blue-950">
+                <a href="/#/Administracion/Configuracion">
+                    <img src={iconConfig} alt="Configuracion">
+                    <p>Configuración</p>
+                </a>
+            </li> -->
         </ul>
     </nav>
 </aside>

@@ -19,6 +19,7 @@
 
     const updateMonth = (e: {detail: {month: string}}) => {
         actualMonth = e.detail.month;
+        console.log(actualMonth)
     }
 
     onMount(() => {

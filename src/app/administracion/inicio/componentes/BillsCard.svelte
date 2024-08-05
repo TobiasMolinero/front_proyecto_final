@@ -7,6 +7,11 @@
     export let title: string = ''
 
     let totalBills: number = 10000
+
+    function formatearNumeroConPuntos(numero: number) {
+        return numero.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+
 </script>
 
 <button on:click={() => push(url)} title={title} class="w-full border border-slate-300 rounded-md p-6 shadow-md hover:shadow-none hover:border-blue-950 transition">
@@ -15,7 +20,7 @@
         <span class="text-[26px] font-[700] text-red-500">
             $
             <span class="text-[38px] font-[700] text-red-500">
-                {totalBills}
+                {formatearNumeroConPuntos(totalBills)}
             </span>
         </span>
         <button on:click={() => push(url)} title={title} >

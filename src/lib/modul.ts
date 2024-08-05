@@ -11,6 +11,7 @@ import SelectRol from "./selects/SelectRol.svelte";
 import SelectCategoryProduct from "./selects/SelectCategoryProduct.svelte";
 import SelectCategoryBills from "./selects/SelectCategoryBills.svelte";
 import SelectProduct from "./selects/SelectProduct.svelte";
+import SelectMonth from './selects/SelectMonth.svelte';
 import Loader from "./loaders/Loader.svelte";
 import IconNavigator from "./icons/IconNavigator.svelte";
 
@@ -28,6 +29,7 @@ export {
     SelectCategoryProduct,
     SelectCategoryBills,
     SelectProduct,
+    SelectMonth,
     Loader,
     IconNavigator
 }
